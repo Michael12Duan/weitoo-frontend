@@ -1,0 +1,3013 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+        "http://www.w3.org/TR/html4/strict.dtd">
+<html xml:ng="http://angularjs.org" id="ng-app">
+<head>
+    <title>燕麦企业云盘-后台管理</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="企业云盘, 企业云, 云盘, 存储">
+<meta name="author" content="qycloud">
+<meta name="google" content="notranslate">
+<meta http-equiv="X-UA-Compatible" content="IE=11; IE=10;  IE=9; IE=8; IE=EDGE"/>
+<link rel="stylesheet" href="/os/assets/css/bootstrap/bootstrap.min.css"/>
+<link rel="stylesheet" href="/os/assets/css/font-awesome/font-awesome.min.css"/>
+<link rel="stylesheet" href="/os/assets/css/common.css"/>
+<style>
+.welcomePage {
+    width: 100%;
+    height: 100%;
+    background-color: #1d90db;
+    text-align: center;
+    position: absolute;
+    top: 0;
+    right: 0
+}
+
+.welcomePage table {
+    width: 100%;
+    height: 100%
+}
+
+.welcomePage .progressWrap {
+    width: 330px;
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    vertical-align: middle
+}
+
+.welcomePage .progressWrap .progressBar {
+    margin-top: 30px;
+    background-color: #2f91c7;
+    height: 3px
+}
+
+.welcomePage .progressWrap .progressBar .progressBarRate {
+    width: 99%;
+    height: 3px;
+    background-color: #fffa70;
+    animation: progressBarRateKey 5s;
+    -moz-animation: progressBarRateKey 5s;
+    -webkit-animation: progressBarRateKey 5s;
+    -o-animation: progressBarRateKey 5s
+}
+
+@keyframes progressBarRateKey {
+    from {
+        width: 1%
+    }
+
+    to {
+        width: 99%
+    }
+}
+
+@-moz-keyframes progressBarRateKey {
+    from {
+        width: 1%
+    }
+
+    to {
+        width: 99%
+    }
+}
+
+@-webkit-keyframes progressBarRateKey {
+    from {
+        width: 1%
+    }
+
+    to {
+        width: 99%
+    }
+}
+
+@-o-keyframes progressBarRateKey {
+    from {
+        width: 1%
+    }
+
+    to {
+        width: 99%
+    }
+}
+</style>
+<link rel="shortcut icon" href="/favicon.ico"/>
+<script src="/os/assets/js/sea.js">
+</script>
+<!--[if lte IE 8]>
+<script src="/os/assets/js/html5shiv.js"></script>
+<script>
+    document.createElement('ng-include');
+    document.createElement('ng-pluralize');
+    document.createElement('ng-view');
+
+    // Optionally these for CSS
+    document.createElement('ng:include');
+    document.createElement('ng:pluralize');
+    document.createElement('ng:view');
+</script>
+<![endif]-->
+    <link rel="stylesheet" href="/os/assets/css/support.css"/>
+    <link rel="stylesheet" href="/os/assets/css/ztree.min.css"/>
+    <link rel="stylesheet" href="/os/assets/css/admin.css"/>
+<script src="/os/sea-config.js">
+</script>
+</head>
+<body style="min-width:1024px;">
+<div class="welcomePage">
+    <table>
+        <tr>
+            <td>
+                <div class="progressWrap">
+                    <img src="/os/assets/img/common/logo-white.png">
+
+                    <div class="progressBar">
+                        <div class="progressBarRate"></div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+<div id="headerbox" class="navbar navbar-inverse header" ng-controller="HeaderCtrl" ng-cloak>
+    <div class="navbar-inner custom-header row-fluid">
+    <div class="container-fluid span3">
+        <a class="brand custom-brand header-logo" href="#index">
+            <img class="logo-img"
+                 ng-hide="currentEnt.txtLogo"
+                 ng-src="{{currentEnt.logo | logoFilter}}"/>
+            <span class="logo-txt" ng-show="currentEnt.txtLogo">{{currentEnt.entName}}</span>
+        </a>
+    </div>
+    <div class="span9 text-right row-right">
+        <div class="border-cell user-info">
+            <img class="img-avatar img-circle" ng-src="{{currentUser.icon|usericon:currentUser.gender}}"/>{{name}}
+            <span>{{$root.currentUser|displayName}}</span>
+        </div>
+        <div class="border-cell hide-private" style="width:60px">
+            <a ng-href="{{constants.getBuyUrl()}}" style="color:#fff" target="_blank"> 购买中心</a>
+        </div>
+        <div class="border-cell hide-private" style="width:30px">
+            <a href="http://www.oatos.com/help" style="color:#fff" target="_blank"> 帮助</a>
+        </div>
+        <div class="sign-out"
+             ng-click="signOut()"><i class="icon-custom-buy-exit"></i> 安全退出
+        </div>
+    </div>
+</div>
+</div>
+<div class="container" id="mainbox" qy-resize="admin-resize" admin-resize="mainbox">
+    <div class="admin-left" admin-resize="admin-left">
+        <ul class="nav nav-list" ng-controller="LeftCtrl" ng-cloak>
+    <li class="row-fluid" ng-repeat="tab in tabs"
+        ng-show="tab.name|leftFilter"
+        ng-class="{'active': tab.name === activeTab, 'nav-header': tab.header}">
+        <i class="fl text-left {{tab.icon}}"></i>
+
+        <div ng-show="tab.header">{{tab.text}}
+        </div>
+        <a ng-href="{{tab.name | href}}"
+           ng-show="!tab.header"
+           ng-class="{'border': tab.border}">
+            {{tab.text}}
+        </a>
+    </li>
+</ul>
+    </div>
+    <div class="admin-right" admin-resize='admin-right' ng-view ng-cloak>
+    </div>
+</div>
+
+<script id="services.html" type="text/ng-template">
+<div class="services-status">
+    <div class="entdisk-service">
+        <div class="row-fluid row-header">
+            <div class="span10">
+                <i class="icon-custom-ent-size"></i>空间大小(<strong>{{entdisk.total | sizeFilter}}</strong>)
+            </div>
+            <div class="span2">
+                <li class="btn btn-link" ng-click="showDiskDetail = true">
+                    使用详情
+                </li>
+            </div>
+        </div>
+        <div class="row-fluid two">
+            <div class="span10">
+                <div class="progress">
+                    <div class="bar bar-success"
+                         ng-style="{'width': (entdisk.used | percent: entdisk.total)}">
+                    </div>
+                </div>
+            </div>
+            <div class="span2 hide-private">
+                <a class="btn btn-white-blue" ng-href="{{constants.getBuyUrl()}}" target="_blank"> 扩容</a>
+            </div>
+        </div>
+        <div class="row-fluid three">
+            <div class="span5">
+                <strong>已用:
+                    <bold>{{entdisk.used | sizeFilter}}</bold>
+                </strong>
+            </div>
+            <div class="span5">
+                剩余: {{entdisk.available | sizeFilter}}
+            </div>
+        </div>
+    </div>
+    <div class="user-service">
+        <div class="row-fluid row-header">
+            <div class="span10">
+                <i class="icon-custom-user-manage"></i>账号数量 (<strong>{{user.total}}</strong>个)
+            </div>
+            <div class="span2">
+                <li class="btn btn-link" ng-click="showAccountDetail = true"> 使用详情</li>
+            </div>
+        </div>
+        <div class="row-fluid two">
+            <div class="span10">
+                <div class="progress">
+                    <div class="bar bar-success"
+                         ng-style="{'width': (user.used | percent:user.total)}"></div>
+                </div>
+            </div>
+            <div class="span2 hide-private">
+                <a class="btn btn-white-blue" ng-href="{{constants.getBuyUrl()}}" target="_blank"> 扩容</a>
+            </div>
+        </div>
+        <div class="row-fluid three">
+            <div class="span5">
+                <strong>已用: {{user.used}} 个</strong>
+            </div>
+            <div class="span5">
+                剩余: {{user.available}} 个
+            </div>
+        </div>
+    </div>
+    <div class="value-added hide-private" ng-show="" style="height: 155px;">
+        <div class="row-fluid row-header">
+            <div class="span10">
+                <i class="icon-custom-add-value"></i>增值服务(已购买)
+            </div>
+            <div class="span2">
+                <a class="btn btn-white-blue" ng-href="{{constants.getBuyUrl()}}" target="_blank"> 购买服务</a>
+            </div>
+        </div>
+        <div class="row-fluid search" style=" border-bottom: 1px solid #dddddd;padding: 0px 0px 10px 0px;">
+            <div class="span1">
+                <i class="icon-custom-full-search"></i>
+            </div>
+            <div class="span9">
+                <strong>全文搜索</strong>
+                <span>使用到期时间:2015-12-12</span>
+            </div>
+            <div class="span2">
+                <em> (免费使用)</em>
+            </div>
+        </div>
+        <div class="row-fluid search" style="padding: 10px 0px;">
+            <div class="span1">
+                <i class="icon-custom-sync-precision"></i>
+            </div>
+            <div class="span9 row-fluid">
+                <strong> 精准同步</strong>
+                <span>使用到期时间:2015-12-12</span>
+            </div>
+            <div class="span2">
+                <em> (免费使用)</em>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade disk-detail"
+     modal-show="showDiskDetail">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3>云盘详情</h3>
+    </div>
+    <div class="modal-body">
+        <ul class="item-list">
+            <li>可用空间:<strong>{{entdisk.available | sizeFilter}}</strong></li>
+            <li>企业云盘:<strong>{{entdisk.totalEntFileSize | sizeFilter}}</strong></li>
+            <li>个人云盘:<strong>{{entdisk.totalPersonalFileSize | sizeFilter}}</strong>
+                    <span class="btn btn-link fr" ng-click="onSetting()">
+                         <a ng-href="#!usermgr">设置</a>
+                    </span>
+            </li>
+            <li>回 收 站: <strong>{{entdisk.totalRecycleFileSize | sizeFilter}}</strong>
+                    <span class="btn btn-link fr" ng-click="onLooking()">
+                          <a ng-href="#!recyclemgr">查看</a>
+                    </span>
+            </li>
+            <li class="divider"></li>
+            <li>云盘总空间:<strong style="font-size: 18px">{{entdisk.total | sizeFilter}}</strong></li>
+        </ul>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-blue" data-dismiss="modal"> 关闭</button>
+    </div>
+</div>
+<div class="modal fade account-detail"
+     modal-show="showAccountDetail">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3>账号详情</h3>
+    </div>
+    <div class="modal-body">
+        <ul class="item-list">
+            <li>已用账号:<strong> {{user.used}}</strong>&nbsp;个</li>
+            <li>可用账号:<strong> {{user.available}}</strong>&nbsp;个</li>
+            <li style="boder-top:1px solid #DDD">账号总数:<strong style="font-size: 18px">{{user.total}}&nbsp;个</strong>
+              <span class="btn btn-link fr" ng-click="onSetting()">
+                         <a ng-href="#!usermgr">设置</a>
+              </span>
+            </li>
+        </ul>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-blue" data-dismiss="modal"> 关闭</button>
+    </div>
+</div>
+
+</script>
+<script id="entinfo.html" type="text/ng-template">
+<div class="ent-info right-content">
+    <div class="row-fluid row-header">
+        <div class="fl" style="width:50%;">
+            <i class="icon-custom-entinfo"></i>&nbsp;{{'msg373'|translate}}
+        </div>
+        <div class="fr ar" style="width:50%; padding:0 10px; box-sizing:border-box;font-size:14px;color:#63698c;">
+            <span style="font-weight: normal;">{{'msg387'|translate}}:</span>{{enterprise.registerTime | dateTime}}
+        </div>
+    </div>
+    <div class="row-fluid row-content">
+        <form class="form-vertical input-form overflow-auto-y"
+              name="entForm" admin-resize="ent-form">
+
+            <div class="control-group">
+                <label class="control-label">{{'msg374'|translate}}</label>
+
+                <div class="controls">
+                    <input type="text"
+                           name="entName"
+                           ng-model="enterprise.entName"/>
+                </div>
+            </div>
+
+            <div class="control-group" ng-show="!enterprise.txtLogo">
+                <div class="control-label item-title">{{'msg375'|translate}}</div>
+                <div class="controls logo-area half-col">
+                    <div class="span6 logo-container">
+                        <img class="logo-bg" ng-src="{{enterprise.logo | logoFilter}}"/>
+
+                        <div class="change-btn ac"
+                             web-uploader
+                             settings="settings"
+                             beforesend="onBeforeSend(object, body, headers)"
+                             success="onSuccess(file, jsonres)">
+                            <div id="entLogoPicker"></div>
+                        </div>
+                    </div>
+                    <div class="span6 tips  ">
+                        <div class="tip-title">注意事项</div>
+                        <ul class="tip-list">
+                            <li>宽 <b>185px</b>,高 <b>43px</b>以内</li>
+                            <li>图片大小不要超过 <b>500kb</b></li>
+                            <li>支持 <b>jpg</b>,<b>png</b>,<b>gif</b>格式</li>
+                        </ul>
+                    </div>
+                    <div style="clear:both;"></div>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="constrol-label item-title">{{'msgShowLogo'|translate}}</label>
+
+                <div class="controls-row">
+                    <input type="radio" ng-model="enterprise.txtLogo" ng-value="false"/>
+                    {{'msgShowLogoPic'|translate}}
+                    <input type="radio" ng-model="enterprise.txtLogo" ng-value="true"/>
+                    {{'msgShowLogoText'|translate}}
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label">{{'msg380'|translate}}</label>
+
+                <div class="controls">
+                    <input type="text"
+                           jq-placeholder="{{'msg380'|translate}}"
+                           name="contact"
+                           ng-model="enterprise.contact"
+                           required/>
+                </div>
+                <div ng-show="entForm.contact.$dirty && entForm.contact.$invalid">
+                    <span ng-show="entForm.contact.$error.required"
+                          class="red error-tip">{{'msgAdminNameEmpty'|translate}}</span>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label">{{'msg381'|translate}}</label>
+
+                <div class="controls">
+                    <input type="text"
+                           placeholder="{{'msg382'|translate}}"
+                           name="phone"
+                           ng-model="enterprise.phone"
+                           required/>
+                </div>
+            </div>
+            <div ng-show="entForm.phone.$dirty && entForm.phone.$invalid">
+                <span ng-show="entForm.phone.$error.required" class="red error-tip">{{'msgAdminPhoneEmpty'|translate}}</span>
+                <span ng-show="entForm.phone.$error.matchPhoneMobile" class="red error-tip">{{'msgAdminPhoneLength'|translate}}</span>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label">{{'msg383'|translate}}</label>
+
+                <div class="controls">
+                    <input type="email"
+                           jq-placeholder="{{'msg384'|translate}}"
+                           name="mail"
+                           ng-model="enterprise.mail"
+                           required/>
+                </div>
+                <div ng-show="entForm.mail.$dirty && entForm.mail.$invalid">
+                    <span ng-show="entForm.mail.$error.required"
+                          class="red error-tip">{{'msgEmailEmpty'|translate}}</span>
+                    <span ng-show="entForm.mail.$error.email"
+                          class="red error-tip">{{'msgEmailFormatError'|translate}}</span>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label">{{'msg385'|translate}}</label>
+
+                <div class="controls">
+                    <input type="text"
+                           jq-placeholder="{{'msg386'|translate}}"
+                           name="address"
+                           ng-model="enterprise.address" required/>
+                </div>
+                <div ng-show="entForm.address.$dirty && entForm.address.$invalid">
+                    <span ng-show="entForm.address.$error.required"
+                          class="red error-tip">{{'msgEmailEmpty'|translate}}</span>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label">{{'msg387'|translate}}</label>
+
+                <div class="controls">
+                    <input type="text"
+                           jq-placeholder="{{'msg384'|translate}}"
+                           value="{{enterprise.registerTime | dateTime}}"
+                           readonly="readonly"/>
+                </div>
+            </div>
+
+            <div class="control-group  ac">
+                <button class="btn btn-blue"
+                        ng-class="{disabled:entForm.$invalid}"
+                        ng-click="saveEnt()"
+                        ng-disabled="">{{'msg365'|translate}}
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+</script>
+
+<script id="usermgr.html" type="text/ng-template">
+<div class="user-mgr right-content" admin-resize="usermgr">
+    <div class="row-fluid row-header">
+        <div class="span3">
+            <i class="icon-custom-user-manage"></i>成员管理
+        </div>
+        <div class="span9">
+            <div class="form-search pull-right">
+                <div class="input-prepend input-append">
+                    <div search-box
+                         placeholder="请输入您要搜索的账号"
+                         search="onSearch(searchKey)"
+                         cancel="goBack()">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row-fluid row-content">
+        <div class="user-left fl" ng-controller="UserLeftCtrl">
+            <div class="row-fluid sec-header">
+                <button class="btn btn-link"
+                        ng-class="currentUser.isSecAdmin() && 'visib-hide'"
+                        ng-click="onCreateDept()">
+                    新建部门
+                </button>
+                <button class="btn btn-link"
+                        ng-class="currentUser.isSecAdmin() && 'visib-hide'"
+                        ng-click="onSortDept()">
+                    部门排序
+                </button>
+            </div>
+            <div class="row-fluid ent-name" title="{{currentEnt.entName}}">
+                <strong class="cursor-pointer text-overflow show-block" ng-click="onSelectDept(null)">
+                    {{currentEnt.entName}}</strong>
+            </div>
+            <ul id="departEditTree"
+                class="ztree  qyc-tree depart-edit-ztree overflow-auto"
+                admin-resize="user-items"
+                dept-edit-tree
+                settings="{'showDeptSettingBtn': true}"
+                edit="onEditDept(select)"
+                create="onCreateDept(select)"
+                delete="onDeleteDept(select)"
+                sort="onSortDept(select)"
+                select-dept="onSelectDept(select)">
+            </ul>
+            <div class="modal fade change-dept"
+     modal-show="modal.changeDept">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3> 更换部门</h3>
+    </div>
+    <div class="modal-body">
+        <div class="row-fluid first">
+            <div class="span2 text-right">
+                <strong>操作对象: </strong>
+            </div>
+            <div class="span10">
+                <span class="label" style="margin-right: 5px"
+                      ng-repeat="user in checkedUsers">{{user|displayName}}</span>
+            </div>
+        </div>
+        <div class="row-fluild"
+             dept-tree
+             select="selectDestDept(dept)">
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div ng-show="commit" class="spinner">
+            <img src="/os/assets/img/common/select2-spinner.gif"/>
+            请稍候, 数据正在提交...
+        </div>
+        <button class="btn btn-blue"
+                ng-click="confirmChangeDept()"
+                ng-class="commit && 'disabled'"> 确定
+        </button>
+        <button class="btn btn-white-blue"
+                ng-class="commit && 'disabled'"
+                ng-click="!commit && (modal.changeDept = false)"> 取消
+        </button>
+    </div>
+</div>
+            <div class="modal fade sort-dept"
+     modal-show="modal.sortDept">
+    <div class="modal-header">
+        <button class="close" data-dismiss="modal">&times;</button>
+        <h3>部门排序</h3>
+    </div>
+    <div class="modal-body">
+        <table class="table table-bordered table-striped">
+            <caption>
+                {{currentDept.name}}部门排序
+            </caption>
+            <thead>
+            <tr class="text-center">
+                <th>部门名称</th>
+                <th>向上</th>
+                <th>向下</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="text-center" ng-repeat="dept in sortDepts">
+                <td class="text-overflow">{{dept.name}}</td>
+                <td class="cursor-pointer text-center"
+                    title="向上"
+                    ng-click="!$first && changeOrder('up',$index,dept)">
+                    <i class="fa fa-long-arrow-up"
+                       ng-show="!$first"></i></td>
+                <td class="cursor-pointer text-center"
+                    title="向下"
+                    ng-click="!$last && changeOrder('down',$index,dept)">
+                    <i class="fa fa-long-arrow-down"
+                       ng-show="!$last"></i></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="modal-footer">
+        <div ng-show="commit" class="spinner">
+            <img src="/os/assets/img/common/select2-spinner.gif"/>
+            请稍候, 数据正在提交...
+        </div>
+        <button class="btn btn-blue"
+                ng-class="commit && 'disabled'"
+                ng-click="!commit && confirmSortDept()">确定
+        </button>
+        <button class="btn btn-white-blue"
+                ng-class="commit && 'disabled'"
+                data-dismiss="modal">取消
+        </button>
+    </div>
+</div>
+        </div>
+        <div class="user-table fl">
+            <div class="row-fluid operations sec-header">
+                <button class="btn btn-link" ng-show="!checkedUsers.length"
+                        ng-click="modal.createUser=true"> 新建账号
+                </button>
+                <button class="btn btn-link"
+                        ng-show="!checkedUsers.length"
+                        ng-click="modal.importUser=true"> 批量导入
+                </button>
+                <button class="btn btn-link" ng-show="hasop('edit')"
+                        ng-click="modal.editUser = true"> 编辑
+                </button>
+                <button class="btn btn-link" ng-show="hasop('user-permission')"
+                        ng-click="modal.userPermission = true"> 修改权限
+                </button>
+                <button class="btn btn-link" ng-show="hasop('set-admin')"
+                        ng-click="setAdmin()"> 设为部门管理员
+                </button>
+                <button class="btn btn-link" ng-show="hasop('cancel-admin')"
+                        ng-click="cancelAdmin()"> 取消部门管理员
+                </button>
+                <button class="btn btn-link" ng-show="hasop('set-persondisk')"
+                        ng-click="modal.setPersonDisk=true">
+                    设置个人文件夹
+                </button>
+                <button class="btn btn-link" ng-show="hasop('change-dept')"
+                        ng-click="modal.changeDept = true"> 更换部门
+                </button>
+                <button class="btn btn-link" ng-show="hasop('lock')"
+                        ng-click="lockUsers()"> 锁定
+                </button>
+                <button class="btn btn-link" ng-show="hasop('unlock')"
+                        ng-click="unlockUsers()"> 解锁
+                </button>
+                <button class="btn btn-link" ng-show="hasop('delete')"
+                        ng-click="deleteUsers()"> 删除
+                </button>
+                <button class="btn btn-link btn-tips" ng-show="hasop('admin-stop')">无权操作企业管理员</button>
+                <button class="btn btn-link btn-tips" ng-show="hasop('secadmin-stop')">无权操作部门管理员</button>
+            </div>
+            <ul class="list-item list-header" admin-resize="user-list">
+    <li class="check"
+        ng-click="checkedUsers = toggleCheck.toggleCheckAll(userPager.users, checkedUsers)">
+                    <span class="checkbox-sprite"
+                          ng-class="checkedUsers.length && checkedUsers.length === userPager.users.length && 'true'"></span>
+    </li>
+    <li class="user-main align-left"> 账号</li>
+    <li class="user-gender"> 性别</li>
+    <li class="user-job-title"> 职务</li>
+    <li class="user-size" style="border:0;"> 个人网盘大小</li>
+</ul>
+<div class="list-body" ng-show="userPager.users.length > 0 ">
+    <ul class="list-item" ng-repeat="user in userPager.users track by $index" admin-resize="user-list">
+        <li class="check"
+            ng-click="$parent.checkedUsers = toggleCheck.multiCheck(user, userPager.users)">
+            <span class="checkbox-sprite" ng-class="user.checked && 'true'"></span></li>
+        <li class="user-main main-cell align-left"
+            ng-click="$parent.checkedUsers = toggleCheck.toggleCheck(user, userPager.users, 'userId')">
+            <div class="row-fluid">
+                <div class="span2 img-cell">
+                    <i ng-class="user|userIcon2"></i>
+                </div>
+                <div class="span10 two-rows-cell">
+                    <strong class="user-name text-overflow">
+                        <span>{{user|adminDisplayName}}</span>
+                        <span class="btn btn-link font-mini hide-private"
+                              ng-click="resendValidate(user, $event)"
+                              ng-show="user.userStatus !== 'ACT'">重发验证</span>
+                    </strong>
+
+                    <div class="dept text-overflow" title="{{user.deptName || '未分组联系人'}}">
+                        <em>{{user.deptName ||'未分组联系人'}}</em></div>
+                </div>
+            </div>
+        </li>
+        <li class="user-gender">{{user.gender|gender}}</li>
+        <li class="user-job-title text-overflow">{{user|jobTitle}}</li>
+        <li class="user-size">
+            <span ng-show="user.diskEnabled">{{user.diskSize | sizeFilter}}</span>
+            <span ng-show="!user.diskEnabled">{{'msg141'|translate}}</span>
+        </li>
+    </ul>
+</div>
+            <div class="pagination" ng-show="userPager.users.length > 0 ">
+                <pagination class="show-block"
+                            total-items="userPager.total"
+                            items-per-page="userPager.perPage"
+                            ng-model="userPager.current"
+                            max-size="userPager.maxSize"
+                            previous-text="上一页"
+                            next-text="下一页"
+                            boundary-links="false"
+                            rotate="false"
+                            num-pages="userPager.numPages"></pagination>
+            </div>
+
+            <div class="empty-tips" ng-show="userPager.users.length === 0">
+                <span>当前列表中没有数据</span>
+            </div>
+        </div>
+    </div>
+
+    <!--modal-->
+    <div class="modal fade create-dept"
+     modal-show="modal.createDept"
+     ng-controller="CreateDeptCtrl">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3> {{modalTitle}}</h3>
+    </div>
+    <div class="modal-body">
+        <form class="form-vertical" name="deptForm">
+            <div class="control-group">
+                <div class="control-label">
+                    <strong>{{deptLabel}}</strong>
+                </div>
+                <div class="controls">
+                    <input type="text"
+                           class="input-block-level"
+                           name="deptName"
+                           autofocus="autofocus"
+                           ng-model="dept.name"
+                           ng-required="true"
+                           enter-listener="confirmCreateDept()"/>
+
+                    <div class="help-block font-red" ng-show="deptForm.deptName.$dirty">
+                        <em ng-show="deptForm.deptName.$error.required">部门名称不能为空</em>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <div class="row-fluid">
+            <span class="checkbox-sprite" ng-class="isCreateFolder && 'true'"
+                  ng-click="isCreateFolder = !isCreateFolder"></span>
+            <span> 创建同名文件夹</span></div>
+    </div>
+    <div class="modal-footer">
+        <div ng-show="commit" class="spinner">
+            <img src="/os/assets/img/common/select2-spinner.gif"/>
+            请稍候, 数据正在提交...
+        </div>
+        <button class="btn btn-blue"
+                ng-click="!commit && confirmCreateDept()"
+                ng-class="commit && 'disabled'"> 确定
+        </button>
+        <button class="btn btn-white-blue"
+                ng-class="commit && 'disabled'"
+                ng-click="!commit && (modal.createDept = false)"> 取消
+        </button>
+    </div>
+</div>
+    <div class="modal fade edit-dept"
+     modal-show="modal.editDept"
+     ng-controller="EditDeptCtrl">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3> 编辑部门</h3>
+    </div>
+    <div class="modal-body">
+        <form class="form-vertical" name="deptForm">
+            <div class="row-fluid">
+                <div class="span4"><strong>部门名称</strong></div>
+                <div class="span6">
+                    <div class="color-red" ng-show="deptForm.deptName.$error.required">
+                        请输入有效的部门名称
+                    </div>
+                </div>
+            </div>
+            <div class="row-fluid">
+                <input type="text"
+                       class="input-block-level"
+                       name="deptName"
+                       ng-required="true"
+                       ng-model="dept.name"/></div>
+            <div class="row-fluid" ng-show="dept.folderId">
+                <strong> 设置部门权限</strong>
+
+                <div class="permission-block">
+                    <strong>
+                    <span class="checkbox-sprite"
+                          ng-click="dept.permission.toggleAll()"
+                          ng-class="dept.permission.hasAll() && 'true'"></span>
+                        全部
+                    </strong>
+
+                    <ul class="permission-list inline-block">
+                        <li><span class="checkbox-sprite"
+                                  ng-click="dept.permission.toggle('read')"
+                                  ng-class="dept.permission.has('read') && 'true'"> </span> 预览
+                        </li>
+                        <li><span class="checkbox-sprite"
+                                  ng-click="dept.permission.toggle('upload')"
+                                  ng-class="dept.permission.has('upload') && 'true'"> </span> 上传
+                        </li>
+                        <li><span class="checkbox-sprite"
+                                  ng-click="dept.permission.toggle('download')"
+                                  ng-class="dept.permission.has('download') && 'true'"> </span> 下载
+                        </li>
+                        <li><span class="checkbox-sprite"
+                                  ng-click="dept.permission.toggle('write')"
+                                  ng-class="dept.permission.has('write') && 'true'"> </span> 编辑
+                        </li>
+                        <li><span class="checkbox-sprite"
+                                  ng-click="dept.permission.toggle('share')"
+                                  ng-class="dept.permission.has('share') && 'true'"> </span> 分享
+                        </li>
+                        <li><span class="checkbox-sprite"
+                                  ng-click="dept.permission.toggle('delete')"
+                                  ng-class="dept.permission.has('delete') && 'true'"> </span> 删除
+                        </li>
+                        <li><span class="checkbox-sprite"
+                                  ng-click="dept.permission.toggle('local')"
+                                  ng-class="dept.permission.has('local') && 'true'"> </span> 本地交互
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="row-fluid" ng-show="dept.folderId">
+                <span class="checkbox-sprite"
+                      ng-click="dept.appalyToSubFolder = !dept.appalyToSubFolder"
+                      ng-class="dept.appalyToSubFolder && 'true'"></span>
+                <span ng-click="dept.appalyToSubFolder = !dept.appalyToSubFolder">
+                    应用到所有子文件夹
+                </span>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <div ng-show="commit" class="spinner">
+            <img src="/os/assets/img/common/select2-spinner.gif"/>
+            '请稍候, 数据正在提交...'
+        </div>
+        <button class="btn btn-blue"
+                ng-click="!commit && confirm()"
+                ng-class="commit && 'disabled'"> 确定
+        </button>
+        <button class="btn btn-white-blue"
+                ng-class="commit && 'disabled'"
+                ng-click="!commit && (modal.editDept = false)"> 取消
+        </button>
+    </div>
+</div>
+    <div class="modal fade create-user"
+     ng-controller="CreateUserCtrl"
+     modal-show="modal.createUser">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3> 新建用户</h3>
+    </div>
+    <div class="modal-body">
+        <form class="form-vertical">
+            <div class="control-group">
+                <div class="controls">
+                    <div class="help-block">{{'msgCreateUserTip'|translate}}</div>
+                </div>
+            </div>
+            <div class="container-fluid valid-users" ng-show="validUsers.length">
+                <div class="row-fluid" ng-repeat="validUser in validUsers">
+                    <span class="label label-blue">{{validUser}} <i class="fa fa-times cursor-pointer" ng-click="validUsers.splice($index, 1)"></i></span>
+                </div>
+            </div>
+            <div class="control-group" ng-form="userForm" ng-repeat="createdUser in createdUsers track by $index">
+                <div class="controls row-fluid">
+                    <div class="span6">
+                        <input type="text"
+                               class="input-block-level"
+                               name="createUser"
+                               jq-placeholder="{{'msgCreateUserTip'|translate}}"
+                               ng-model="createdUsers[$index]"
+                               ng-required="true"
+                               enter-listener="addValidUser($index)"
+                               ng-pattern="constants.pattern.emailOrMobile"/>
+                    </div>
+                    <div class="span2">
+                        <button class="btn btn-blue" ng-click="addValidUser($index)">确定</button>
+                    </div>
+                    <div class="span4 text-overflow"
+                         ng-show="userForm.createUser.$dirty && userForm.createUser.$invalid">
+                        <span class="label label-important" ng-show="userForm.createUser.$error.pattern"> {{'msgInputValidUser'|translate}}</span>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <div ng-show="commit" class="spinner">
+            <img src="/os/assets/img/common/select2-spinner.gif"/>
+            请稍候, 数据正在提交...
+        </div>
+        <button class="btn btn-blue"
+                ng-class="commit && 'disabled'"
+                ng-click="!commit && confirm()"> 创建
+        </button>
+        <button class="btn btn-white-blue"
+                ng-class="commit && 'disabled'"
+                ng-click="!commit && (modal.createUser = false)"> 取消
+        </button>
+    </div>
+</div>
+    <div class="modal fade edit-user"
+     modal-show="modal.editUser"
+     ng-controller="EditUserCtrl">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3> 编辑成员</h3>
+    </div>
+    <div class="modal-body">
+        <div class="tabbable">
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#logininfo" data-toggle="tab"> 登录信息</a></li>
+                <li><a href="#jobinfo" data-toggle="tab"> 用户信息</a></li>
+                <li><a href="#changepwd" data-toggle="tab"> 修改密码</a></li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active" id="logininfo">
+                    <form class="form-vertical login-info" name="loginForm">
+                        <div class="row-fluid control-group first">
+                            <label class="control-label"><strong>重置登录信息说明</strong></label>
+
+                            <ul class="controls list-decimal ">
+                                <li> 重置信息后, 原有信息失效.</li>
+                                <li> 重置信息后, 新设置的账号需要重新验证过, 方可正常使用云盘.</li>
+                            </ul>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label bold">请输入新的邮箱地址\手机号码</label>
+
+                            <div class="controls">
+                                <input type="text" class="input-xlarge"
+                                       name="username"
+                                       ng-pattern="constants.pattern.emailOrMobile"
+                                       ng-model="user.account"/>
+
+                                <div class="help-block">
+                                    <div class="alert alert-danger" ng-show="loginForm.username.$error.pattern">
+                                        请输入有效的邮箱地址或者手机号
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="tab-pane" id="jobinfo">
+                    <form class="form-vertical" name="jobInfoForm">
+                        <div class="control-group">
+                            <label class="control-label strong">姓名: </label>
+
+                            <div class="controls">
+                                <input type="text" class="input-xlarge" jq-placeholder="工卡\入职编号"
+                                       ng-model="user.realName">
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label strong">性别: </label>
+
+                            <div class="controls">
+                                <input type="radio" name="gender"  value="m" ng-model="user.gender">男&nbsp;
+                                <input type="radio" name="gender"  value="f" ng-model="user.gender">女&nbsp;
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label strong">工号: </label>
+
+                            <div class="controls">
+                                <input type="text" class="input-xlarge" jq-placeholder="工卡\入职编号"
+                                       ng-model="user.empNum">
+                            </div>
+                        </div>
+                        <div class="control-group"><label class="control-label strong">职位: </label>
+
+                            <div class="controls">
+                                <input type="text" class="input-xlarge" jq-placeholder="当前级别\职称"
+                                       ng-model="user.jobTitle">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label strong">座机\分机号: </label>
+
+                            <div class="controls"><input class="input-xlarge" jq-placeholder="座机\分机号" type="text"
+                                                         ng-model="user.phone"/>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="tab-pane" id="changepwd">
+                    <form class="form-vertical" name="changePwdForm">
+                        <div class="control-group"><label class="control-label strong">新密码: </label>
+
+                            <div class="controls">
+                                <input type="password" name="pwd" class="input-xlarge" jq-placeholder="请输入新密码"
+                                       ng-model="user.pwd" ng-pattern="constants.pattern.password"/>
+                                <span class="help-inline label label-important text-overflow"
+                                      ng-show="changePwdForm.pwd.$error.pattern">请输入合法的密码</span>
+                            </div>
+                        </div>
+                        <div class="control-group"><label class="control-label strong">确认密码: </label>
+
+                            <div class="controls">
+                                <input type="password" name="repwd" class="input-xlarge" jq-placeholder="请输入确认密码"
+                                       ng-model="user.repwd" ng-pattern="constants.pattern.password"/>
+                                <span class="help-inline label label-important text-overflow"
+                                      ng-show="changePwdForm.repwd.$error.pattern">请输入正确的确认密码</span>
+                                <span class="help-inline label label-important text-overflow"
+                                      ng-show="changePwdForm.repwd.$valid && user.repwd && user.repwd !== user.pwd">确认密码和新密码不相等</span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div ng-show="commit" class="spinner">
+            <img src="/os/assets/img/common/select2-spinner.gif"/>
+            请稍候, 数据正在提交...
+        </div>
+        <button class="btn btn-blue"
+                ng-class="commit && 'disabled'"
+                ng-click="!commit && confirm()"> 确定
+        </button>
+        <button class="btn btn-white-blue"
+                ng-class="commit && 'disabled'"
+                ng-click="!commit && (modal.editUser = false)"> 取消
+        </button>
+    </div>
+</div>
+    <div class="modal fade set-persondisk"
+     modal-show="modal.setPersonDisk"
+     ng-controller="SetPersonDiskCtrl">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3> 设置个人文件夹</h3>
+    </div>
+    <div class="modal-body">
+        <div class="row-fluid">
+            <div class="span2">
+                <strong>操作对象: </strong>
+            </div>
+            <div class="span10 operate-objects">
+                <span class="label" ng-repeat="user in users">{{user|displayName}}</span>
+            </div>
+        </div>
+        <div class="row-fluid input-form">
+            <div class="span2 text-right">
+                开启:
+                <span class="checkbox-sprite" ng-class="diskEnabled && 'true'"
+                      ng-click="diskEnabled = !diskEnabled"></span>
+            </div>
+            <div class="span10">
+                <form class="form-horizontal" name="personDiskForm">
+                    <div class="control-group">
+                        <label class="control-label strong"> 设置个人文件夹大小</label>
+
+                        <div class="controls">
+                            <input type="number" name="diskSize" ng-required="true" ng-model="diskSize" class="input-mini"/>
+                            <span class="help-inline">MB (最大值: {{maxSize|gbSizeFilter}} GB)</span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div ng-show="commit" class="spinner">
+            <img src="/os/assets/img/common/select2-spinner.gif"/>
+            请稍候, 数据正在提交...
+        </div>
+        <button class="btn btn-blue"
+                ng-class="commit && 'disabled'"
+                ng-click="!commit && confirm()"> 确定
+        </button>
+        <button class="btn btn-white-blue"
+                ng-class="commit && 'disabled'"
+                ng-click="!commit && (modal.setPersonDisk = false)"> 取消
+        </button>
+    </div>
+</div>
+    <div class="modal fade import-user"
+     ng-controller="ImportUserCtrl"
+     modal-show="modal.importUser">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3> 批量导入账号</h3>
+    </div>
+    <div class="modal-body">
+        <strong>批量导入说明</strong>
+
+        <ul class="intros">
+            <li>请先下载导入模板,填写模板内容后导入模板。<a href="/os/node/file/download/excel" class="text-underline"> 下载模板</a>
+            </li>
+            <li>导入账号及部门信息成功后，请设置账号所要管理文件夹的权限，否则账号将无法访问云盘文件。</li>
+            <li>请按规范正确填写模板内容；内容不符合规范，将无法导入系统。</li>
+            <li>可以在账号设置中查看账号相关信息，并设置相应文件的权限；也可在高级设置中使用角色权限批量设置文件权限。</li>
+        </ul>
+    </div>
+    <div class="modal-footer">
+        <div ng-show="commit" class="spinner">
+            <img src="/os/assets/img/common/select2-spinner.gif"/>
+            请稍候, 数据正在上传...
+        </div>
+        <div class="btn btn-white-blue web-uploader"
+             web-uploader
+             settings="settings"
+             beforesend="onBeforeSend(object, body, headers)"
+             success="onSuccess(file, jsonres)">
+            <div id="importUserPicker">上传模版文件</div>
+        </div>
+        <div class="btn btn-white-blue" ng-click="!commit && (modal.importUser=false)">关闭</div>
+    </div>
+</div>
+    <div class="modal fade user-permission"
+     modal-show="modal.userPermission"
+     ng-controller="UserPermissionCtrl">
+
+    <div class="select-folders" ng-show="page == 'select-folders'">
+        <div class="modal-header">
+            <button type="button" class="close close-window" data-dismiss="modal">&times;</button>
+            <h3>选择文件夹</h3>
+        </div>
+        <div class="modal-body">
+            <div class="row-fluid sec-row-content"
+                 ent-folder-tree
+                 settings="{'showManageFolder': true}"
+                 onselect="onSelectFolders(selectFolders)"></div>
+        </div>
+        <div class="modal-footer">
+            <div class="row-fluid">
+                <button class="btn btn-blue"
+                        ng-click="page = 'set-permission'"> 确定
+                </button>
+                <button class="btn btn-white-blue"
+                        ng-click="addedFolders = [] ; page = 'permission-list'"> 取消
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="set-permission" ng-show="page == 'set-permission'">
+        <div class="modal-header">
+            <button type="button" class="close close-window" data-dismiss="modal">&times;</button>
+            <h3>设置权限</h3>
+        </div>
+        <div class="modal-body">
+            <div class="row-fluid set-permission">
+                <div permission-selector
+                     permission="folderPermission"></div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="row-fluid">
+                <button class="btn btn-blue"
+                        ng-click="confirmSetPermission()"> 确定
+                </button>
+                <button class="btn btn-white-blue"
+                        ng-click="page = 'permission-list'"> 取消
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="permission-list" ng-show="page == 'permission-list'">
+        <div class="modal-header">
+            <button type="button" class="close close-window" data-dismiss="modal">&times;</button>
+            <h3><i class="icon-custom-member-list"></i> 权限列表</h3>
+        </div>
+        <div class="modal-body">
+            <div class="user-permission-detail">
+                <div class="row-fluid current-account">
+    <div class="span6 text-overflow">当前账号: {{user | adminDisplayName}}</div>
+    <div class="span6">
+        <span class="btn btn-orange" ng-click="page ='select-folders'">添加文件权限</span>
+    </div>
+</div>
+<div class="row-fluid list-container">
+    <ul class="list-header">
+        <li class="span5">文件夹名称</li>
+        <li class="span2">权限类型</li>
+        <li class="span2">权限内容</li>
+        <li class="span3">操作</li>
+    </ul>
+    <div class="list-body">
+        <ul class="list-items" ng-repeat="permission in permissionItems | validPermissions">
+            <li class="span5 al">
+                <div class="row-fluid">
+                    <div class="span2" style="padding-left: 5px"><i class="file-icon-medium file-folder"></i></div>
+                    <div class="span10 text-overflow" style="line-height: 20px;">
+                        <strong>{{permission.folderName|specialName}}</strong>
+                        <em>{{permission.folderPath|specialPath}}</em>
+                    </div>
+                </div>
+            </li>
+            <li class="span2">{{permission.permissionType | permissionType}}</li>
+            <li class="span2">{{permission.permission | permissionLabel}}</li>
+            <li class="span3" ng-show="permission.permissionType === 'user'">
+                <button class="btn btn-link" style="border-right: 1px solid #DDD;"
+                        ng-click="selectPermissionItem(permission)">
+                    修改
+                </button>
+                <button class="btn btn-link" ng-click="deletePermission(permission)">删除
+                </button>
+            </li>
+        </ul>
+    </div>
+</div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="spinner" ng-show="commit">
+                <img src="/os/assets/img/common/select2-spinner.gif"/>
+                请稍候, 数据正在提交...
+            </div>
+            <div class="row-fluid">
+                <div class="span8 text-left" ng-show="!commit">
+                    温馨提示: 部门与角色权限类型修改，请在对应的部门权限修改或角色权限修改中进行修改。
+                </div>
+                <div class="fr">
+                    <button class="btn btn-blue"
+                            ng-click="!commit && confirm()"
+                            ng-class="commit && 'disabled'">确定
+                    </button>
+                    <button class="btn btn-white-blue"
+                            ng-class="commit && 'disabled'"
+                            ng-click="!commit && (modal.userPermission = false)">取消
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <div class="modal fade active-account"
+     modal-show="modal.activeAccount">
+    <div class="modal-header">
+        <button class="close" data-dismiss="modal">×</button>
+        <h3>重新激活账号</h3>
+    </div>
+    <div class="modal-body">
+        <h2 class="title">重新激活账号成功</h2>
+
+        <ul>
+            <li>{{'msg88' | translate }}:{{activeUser.userName}}</li>
+            <li ng-show="constants.isEmail(activeUser.userName)">
+                {{'msgAddAccountEmailTip' | translate }}
+            </li>
+            <li ng-show="!constants.isEmail(activeUser.userName)">
+                {{'msgAddAccountSmsTip' | translate }}
+            </li>
+            <li>
+                <input type="checkbox"
+                       name="disableTip"
+                       ng-modal="disableTip" style="margin:0px 0px 2px" ng-click="disableActiveAccountTip($event)"/>
+                {{'msgAddAcountNoTip' | translate }}
+            </li>
+        </ul>
+    </div>
+    <div class="modal-footer">
+        <div class="row-fluid pull-right">
+            <span class="btn btn-blue" data-dismiss="modal">{{'msg86' | translate }}</span>
+        </div>
+    </div>
+</div>
+</div></script>
+<script id="rolemgr.html" type="text/ng-template">
+<div class="row-fluid right-content role-mgr">
+    <div class="span6 role-mgr-left" style="width:49%;" admin-resize="role-mgr">
+        <div class="role-header">
+            <div class="row-fluid">
+                <div class="span4">
+                    <i class="icon-custom-role-manage"></i>&nbsp;角色管理
+                </div>
+                <div class="span8 text-right">
+                    <div search-box
+                         placeholder="请输入您要搜索的角色名称"
+                         search="onSearch(searchKey)"
+                         cancel="goBack()"></div>
+                </div>
+            </div>
+        </div>
+        <div class="new-disk-role"><a class="create-role" ng-click="createRole()">创建云盘角色</a></div>
+        <div class="role-list-merge" admin-resize="role-items">
+            <div class="domain-create role-list">
+                <div class="role-item" ng-repeat="group in rolePager.roles | roleFilter:'domain'">
+                    <ul class="list-item" ng-class="{active:group.groupId==currentGroup.groupId}">
+                        <li class="text-overflow al" ng-click="showGroup(group.groupId)">
+                            <i class="icon-custom-domain-group"></i>&nbsp;{{group.groupName}}
+                        </li>
+                        <li class="operates" style="padding:0;">
+                            <div class="btn-group">
+                            <span class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"
+                                  style="padding:0 5px;"><i class="icon-custom-dropdown"></i></span>
+
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a class="edit-role-btn" ng-click="editRole(group)">设置权限</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="disk-create role-list">
+                <div class="role-item" ng-repeat="group in rolePager.roles | roleFilter:'NORMAL'">
+                    <ul class="list-item" ng-class="{active:group.groupId==currentGroup.groupId}">
+                        <li class="text-overflow al" ng-click="showGroup(group.groupId)">
+                            <i class="icon-custom-role-manage"></i>&nbsp;{{group.groupName}}
+                        </li>
+                        <li class="operates" style="padding:0;">
+                            <div class="btn-group">
+                            <span class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"
+                                  style="padding:0 5px;"><i class="icon-custom-dropdown"></i></span>
+
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a class="edit-role-btn" ng-click="editRole(group)">编辑角色</a></li>
+                                    <li><a class="delete-role-btn" ng-click="deleteRole(group,$index)">删除</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="empty-tips" ng-show="rolePager.roles.length === 0">
+                <span>当前列表中没有数据</span>
+            </div>
+        </div>
+        <div class="pagination" ng-show="rolePager.roles.length > 0 ">
+            <pagination class="show-block"
+                        total-items="rolePager.total"
+                        items-per-page="rolePager.perPage"
+                        ng-model="rolePager.current"
+                        max-size="rolePager.maxSize"
+                        previous-text="上一页"
+                        next-text="下一页"
+                        boundary-links="false"
+                        rotate="false"
+                        num-pages="rolePager.numPages"></pagination>
+        </div>
+    </div>
+    <div class="span6 member-list" style="width:50%;margin:0;" admin-resize="role-mgr">
+        <div class="role-header"><i class="fa fa-list" style="color:#1694f3;"></i>&nbsp;成员列表</div>
+        <div class="member-list">
+            <ul class="list-item" ng-repeat="user in currentGroup.users">
+                <li class="icon"><i class="icon-custom-user-manage"></i></li>
+                <li class="name">{{user.userName}}</li>
+            </ul>
+            <ul class="list-item group" ng-repeat="group in currentGroup.groups"
+                ng-click="group.from!='NORMAL' && showOneGroup(group)">
+                <li class="icon">
+                    <i ng-class="{'icon-custom-role-manage':group.from==='NORMAL','icon-custom-domain-group':group.from!='NORMAL'}"></i>
+                </li>
+                <li class="name">{{group.groupName}}</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="modal fade create-role"
+     modal-show="modal.createRole"
+     ng-controller="CreateRoleCtrl">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3> 创建云盘角色</h3>
+    </div>
+    <div class="modal-body">
+        <ul class="role-nav">
+            <li>
+                <span ng-click="changeStep('step1')"
+                      ng-class="step == 'step1' && 'active'">1.创建角色名称</span>
+                <i class="icon-custom-dirt-right"></i>
+            </li>
+            <li>
+                <span ng-click="changeStep('step2')"
+                      ng-class="step == 'step2' && 'active'">2.选择成员</span>
+                <i class="icon-custom-dirt-right"></i>
+            </li>
+            <li><span ng-click="changeStep('step3')"
+                      ng-class="step == 'step3' && 'active'">3.选择文件夹</span>
+                <i class="icon-custom-dirt-right"></i></li>
+            <li>
+                <span ng-click="changeStep('step4')"
+                      ng-class="step == 'step4' && 'active'">4.设置权限</span>
+                <i class="icon-custom-dirt-right"></i>
+            </li>
+            <li>
+                <span ng-click="changeStep('step5')"
+                      ng-class="step == 'step5' && 'active'">5.完成</span>
+            </li>
+        </ul>
+        <div class="role-content">
+            <div class="add-role" ng-show="step === 'step1'">
+                <div class="row-fluid">
+    <form class="form-vertical" name="roleForm">
+        <div class="control-group">
+            <strong class="control-label"> 角色名称: </strong>
+
+            <div class="controls">
+                <input class="input-block-level" type="text"
+                       name="roleName"
+                       ng-model="role.name"
+                       ng-required="true"
+                       enter-listener="nextStep()"/>
+            </div>
+        </div>
+    </form>
+</div>
+            </div>
+            <div class="select-users" ng-show="step === 'step2'">
+                <div class="row-fluid role-header">
+    <label>角色名称: </label>
+    <strong>{{role.name}}</strong>
+</div>
+<div class="row-fluid sec-row-content"
+     dept-user-selector
+     select-users="selectUsers"
+     onselectdepts="onSelectDepts(depts)"
+     onselectusers="onSelectUsers(users)">
+</div>
+            </div>
+            <div class="select-folders" ng-show="step === 'step3'">
+                <div class="row-fluid role-header">
+    <label>角色名称: </label>
+    <strong>{{role.name}}</strong>
+</div>
+<div class="row-fluid sec-row-content"
+     ent-folder-tree
+     settings="{'showManageFolder': true}"
+     onselect="onSelectFolders(selectFolders)"></div>
+            </div>
+            <div class="set-permission" ng-show="step === 'step4'">
+                <div class="row-fluid role-header">
+    <label>角色名称: </label>
+    <strong>{{role.name}}</strong>
+</div>
+<div class="row-fluid">
+    <div permission-selector
+         permission="folderPermission"></div>
+</div>
+            </div>
+            <div class="role-detail" ng-show="step === 'step5'">
+                <div class="row-fluid first">
+    <form class="form-vertical" name="roleForm" ng-show="role && !role.isDomain()">
+        <div class="row-fluid role-header-special">
+            <div class="span4">
+                <strong class="control-label">角色名称 </strong>
+            </div>
+            <div class="span8">
+                    <span class="alert alert-danger alert-override"
+                          ng-show="roleForm.roleName.$error.required">
+                       角色名不能为空
+                </span>
+                <span class="alert alert-danger"
+                      ng-show="roleForm.roleName.$error.pattern">
+                      角色名为1-30位的字符
+                </span>
+            </div>
+        </div>
+
+        <div class="controls">
+            <input type="text" class="input-block-level"
+                   name="roleName"
+                   ng-required="true"
+                   ng-pattern='/.{1,30}/'
+                   ng-model="role.name"/>
+        </div>
+    </form>
+    <div ng-show="role && role.isDomain()">
+        <strong class="control-label">域角色名称：</strong>{{role.name}}</span>
+    </div>
+</div>
+<div class="row-fluid">
+    <div class="list-container folder-container">
+        <div class="row-fluid">
+            <div class="span9">
+                <strong>文件夹权限</strong>
+            </div>
+            <div class="span3">
+                <button class="btn btn-link" ng-click="changeStep('step3')"> 继续选择</button>
+                <button class="btn btn-link" ng-click="selectFolders = []"> 清空</button>
+            </div>
+        </div>
+        <div class="row-fluid row-header">
+            <div class="span8"> 文件夹名</div>
+            <div class="span4"> 权限</div>
+        </div>
+        <ul class="list-items">
+            <li ng-repeat="folder in selectFolders" class="row-fluid">
+                <div class="span1" style="padding-top: 3px">
+                    <i class="file-icon-medium {{folder.type|type2icon}}"></i>
+                </div>
+                <div class="span7">
+                    <strong class="show-block">{{folder.name|specialName}}</strong>
+                    <span class="folder-path">{{folder.path|specialPath}}</span>
+                </div>
+                <div class="span2">
+                    <div class="btn-group" style="line-height: 40px;">
+                        <a class="btn btn-white-blue dropdown-toggle" data-toggle="dropdown" href="#">
+                            {{folder.permission | permissionLabel}}
+                            <span class="caret"></span>
+                        </a>
+
+                        <ul class="dropdown-menu">
+                            <li ng-click="folder.permission.check('read')">仅预览
+                            </li>
+                            <li ng-click="folder.permission.check('upload')">仅上传
+                            </li>
+                            <li ng-click="folder.permission.check('download')">仅下载
+                            </li>
+                            <li ng-click="folder.permission.check('read','upload')">预览和上传
+                            </li>
+                            <li ng-click="folder.permission.check('read','download')">预览和下载
+                            </li>
+                            <li ng-click="folder.permission.checkAll()">全部
+                            </li>
+                            <li ng-click="showCustomPermission(folder)">自定义
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="span2 btn btn-link" ng-click="selectFolders.splice($index, 1)">
+                    <i class="fa fa-times"></i>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="list-container" ng-if="role && !role.isDomain()">
+        <div class="row-fluid">
+            <div class="span9">
+                <strong> 选择成员 </strong>
+            </div>
+            <div class="span3">
+                <button class="btn btn-link" ng-click="changeStep('step2')"> 继续选择</button>
+                <button class="btn btn-link" ng-click="selectUsers = []"> 清空</button>
+            </div>
+        </div>
+        <ul class="row-fluid list-items" style="height: 120px; overflow: auto;">
+            <li class="row-fluid user-item" ng-repeat="user in selectUsers">
+                <div class="span1" style="padding-top: 3px;">
+                    <img class="img-circle" ng-src="{{user.icon|usericon:user.gender}}" alt="Icon" width="30"/>
+                </div>
+                <div class="span8">
+                    <strong class="text-overflow show-block">{{user|adminDisplayName}}</strong>
+                    <span class="folder-path">{{user.deptName}}</span>
+                </div>
+                <div class="span2 text-right">
+                    <button class="btn btn-link" ng-click="selectUsers.splice($index, 1)">
+                        <i class="fa fa-times"></i>
+                    </button>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-white-blue fl"
+                ng-hide="step === 'step1'|| step ==='step5'"
+                ng-click="previewStep()">上一步
+        </button>
+        <button class="btn btn-blue" ng-hide="step === 'step5'"
+                ng-click="nextStep()"> 下一步
+        </button>
+
+        <button class="btn btn-blue"
+                ng-click="confirm()"
+                ng-show="step ==='step5'"
+                ng-class="commit && 'disabled'"> 完成
+        </button>
+        <button class="btn btn-white-blue"
+                ng-class="commit && 'disabled'"
+                ng-click="!commit && (modal.createRole = false)"> 取消
+        </button>
+    </div>
+</div>
+    <div class="modal fade edit-role "
+     modal-show="modal.editRole"
+     ng-controller="EditRoleCtrl">
+
+    <div ng-if="page == 'role-detail'">
+        <div class="modal-header">
+            <button class="close" data-dismiss="modal">×</button>
+            <h3>{{title}}</h3>
+        </div>
+        <div class="modal-body">
+            <div class="role-content role-detail">
+                <div class="row-fluid first">
+    <form class="form-vertical" name="roleForm" ng-show="role && !role.isDomain()">
+        <div class="row-fluid role-header-special">
+            <div class="span4">
+                <strong class="control-label">角色名称 </strong>
+            </div>
+            <div class="span8">
+                    <span class="alert alert-danger alert-override"
+                          ng-show="roleForm.roleName.$error.required">
+                       角色名不能为空
+                </span>
+                <span class="alert alert-danger"
+                      ng-show="roleForm.roleName.$error.pattern">
+                      角色名为1-30位的字符
+                </span>
+            </div>
+        </div>
+
+        <div class="controls">
+            <input type="text" class="input-block-level"
+                   name="roleName"
+                   ng-required="true"
+                   ng-pattern='/.{1,30}/'
+                   ng-model="role.name"/>
+        </div>
+    </form>
+    <div ng-show="role && role.isDomain()">
+        <strong class="control-label">域角色名称：</strong>{{role.name}}</span>
+    </div>
+</div>
+<div class="row-fluid">
+    <div class="list-container folder-container">
+        <div class="row-fluid">
+            <div class="span9">
+                <strong>文件夹权限</strong>
+            </div>
+            <div class="span3">
+                <button class="btn btn-link" ng-click="changeStep('step3')"> 继续选择</button>
+                <button class="btn btn-link" ng-click="selectFolders = []"> 清空</button>
+            </div>
+        </div>
+        <div class="row-fluid row-header">
+            <div class="span8"> 文件夹名</div>
+            <div class="span4"> 权限</div>
+        </div>
+        <ul class="list-items">
+            <li ng-repeat="folder in selectFolders" class="row-fluid">
+                <div class="span1" style="padding-top: 3px">
+                    <i class="file-icon-medium {{folder.type|type2icon}}"></i>
+                </div>
+                <div class="span7">
+                    <strong class="show-block">{{folder.name|specialName}}</strong>
+                    <span class="folder-path">{{folder.path|specialPath}}</span>
+                </div>
+                <div class="span2">
+                    <div class="btn-group" style="line-height: 40px;">
+                        <a class="btn btn-white-blue dropdown-toggle" data-toggle="dropdown" href="#">
+                            {{folder.permission | permissionLabel}}
+                            <span class="caret"></span>
+                        </a>
+
+                        <ul class="dropdown-menu">
+                            <li ng-click="folder.permission.check('read')">仅预览
+                            </li>
+                            <li ng-click="folder.permission.check('upload')">仅上传
+                            </li>
+                            <li ng-click="folder.permission.check('download')">仅下载
+                            </li>
+                            <li ng-click="folder.permission.check('read','upload')">预览和上传
+                            </li>
+                            <li ng-click="folder.permission.check('read','download')">预览和下载
+                            </li>
+                            <li ng-click="folder.permission.checkAll()">全部
+                            </li>
+                            <li ng-click="showCustomPermission(folder)">自定义
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="span2 btn btn-link" ng-click="selectFolders.splice($index, 1)">
+                    <i class="fa fa-times"></i>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="list-container" ng-if="role && !role.isDomain()">
+        <div class="row-fluid">
+            <div class="span9">
+                <strong> 选择成员 </strong>
+            </div>
+            <div class="span3">
+                <button class="btn btn-link" ng-click="changeStep('step2')"> 继续选择</button>
+                <button class="btn btn-link" ng-click="selectUsers = []"> 清空</button>
+            </div>
+        </div>
+        <ul class="row-fluid list-items" style="height: 120px; overflow: auto;">
+            <li class="row-fluid user-item" ng-repeat="user in selectUsers">
+                <div class="span1" style="padding-top: 3px;">
+                    <img class="img-circle" ng-src="{{user.icon|usericon:user.gender}}" alt="Icon" width="30"/>
+                </div>
+                <div class="span8">
+                    <strong class="text-overflow show-block">{{user|adminDisplayName}}</strong>
+                    <span class="folder-path">{{user.deptName}}</span>
+                </div>
+                <div class="span2 text-right">
+                    <button class="btn btn-link" ng-click="selectUsers.splice($index, 1)">
+                        <i class="fa fa-times"></i>
+                    </button>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div ng-show="commit" class="spinner">
+                <img src="/os/assets/img/common/select2-spinner.gif"/>
+                请稍候, 数据正在提交...
+            </div>
+            <button class="btn btn-blue"
+                    ng-click="confirm()"
+                    ng-class="commit && 'disabled'"> 确定
+            </button>
+            <button class="btn btn-white-blue"
+                    ng-class="commit && 'disabled'"
+                    ng-click="!commit && (modal.editRole = false)"> 取消
+            </button>
+        </div>
+    </div>
+
+    <div ng-if="page == 'select-users'">
+        <div class="modal-header">
+            <button class="close" data-dismiss="modal">×</button>
+            <h3>选择用户</h3>
+        </div>
+        <div class="modal-body">
+            <div class="select-users">
+                <div class="row-fluid role-header">
+    <label>角色名称: </label>
+    <strong>{{role.name}}</strong>
+</div>
+<div class="row-fluid sec-row-content"
+     dept-user-selector
+     select-users="selectUsers"
+     onselectdepts="onSelectDepts(depts)"
+     onselectusers="onSelectUsers(users)">
+</div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-blue"
+                    ng-click="changePage()"> 确定
+            </button>
+            <button class="btn btn-white-blue"
+                    ng-click="$parent.page = 'role-detail'"> 取消
+            </button>
+        </div>
+    </div>
+
+    <div ng-if="page == 'select-folders'">
+        <div class="modal-header">
+            <button class="close" data-dismiss="modal">×</button>
+            <h3>选择文件夹</h3>
+        </div>
+        <div class="modal-body">
+            <div class="select-folders">
+                <div class="row-fluid role-header">
+    <label>角色名称: </label>
+    <strong>{{role.name}}</strong>
+</div>
+<div class="row-fluid sec-row-content"
+     ent-folder-tree
+     settings="{'showManageFolder': true}"
+     onselect="onSelectFolders(selectFolders)"></div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-blue"
+                    ng-click="changePage()"> 确定
+            </button>
+            <button class="btn btn-white-blue"
+                    ng-click="$parent.page = 'role-detail'"> 取消
+            </button>
+        </div>
+    </div>
+
+    <div ng-if="page == 'set-permission'">
+        <div class="modal-header">
+            <button class="close" data-dismiss="modal">×</button>
+            <h3>选择权限</h3>
+        </div>
+        <div class="modal-body">
+            <div class="set-permission">
+                <div class="row-fluid role-header">
+    <label>角色名称: </label>
+    <strong>{{role.name}}</strong>
+</div>
+<div class="row-fluid">
+    <div permission-selector
+         permission="folderPermission"></div>
+</div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-blue"
+                    ng-click="changePage()"> 确定
+            </button>
+            <button class="btn btn-white-blue"
+                    ng-click="$parent.page = 'role-detail'"> 取消
+            </button>
+        </div>
+    </div>
+</div>
+    <div class="modal fade set-permission"
+     style="min-width: 660px;"
+     modal-show="modal.setPermission">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3> 选择权限</h3>
+    </div>
+    <div class="modal-body">
+        <div permission-selector
+             permission="customPermission.permission">
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-blue" data-dismiss="modal"> 确定</button>
+    </div>
+</div>
+</div>
+</script>
+
+<script id="syncmgr.html" type="text/ng-template">
+<div class="sync-mgr right-content">
+    <div class="row-fluid row-header">
+        <div class="span3">
+            <i class="icon-custom-sync-manage"></i> 同步管理
+        </div>
+        <div class="span9">
+            <div class="form-search pull-right">
+                <div search-box
+                     placeholder="请输入您要搜索的同步文件夹"
+                     search="onSearch(searchKey)"
+                     cancel="goBack()">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row-fluid row-content">
+        <div class="row-fluid list-caption">
+            <button class="btn btn-link"
+                    ng-click="createSyncFolder()" ng-show="checkedSyncs.length<=0">
+                创建
+            </button>
+            <button class="btn btn-link pipe"
+                    ng-click="lookDetail()"
+                    ng-show="checkedSyncs.length==1">查看详情
+            </button>
+            <button class="btn btn-link"
+                    ng-click="deleteSyncFolders()"
+                    ng-show="checkedSyncs.length>=1">删除
+            </button>
+        </div>
+        <ul class="row-fluid list-header">
+            <li class="span1">
+                <span class="checkbox-sprite"
+                      ng-class="checkedSyncs.length && checkedSyncs.length === syncs.length && 'true' "
+                      ng-click="checkedSyncs = toggleCheck.toggleCheckAll(syncs, checkedSyncs)"></span>
+            </li>
+            <li class="span7 file-info text-left">文件夹名</li>
+            <li class="span4 file-creator">操作人</li>
+        </ul>
+
+        <div class="row-fluid list-body" admin-resize="sync-items">
+            <ul class="row-fluid list-items" ng-repeat="sync in syncs">
+                <li class="span1">
+                      <span class="checkbox-sprite" ng-class="sync.checked && 'true'"
+                            ng-click="$parent.checkedSyncs = toggleCheck.multiCheck(sync, syncs)"></span>
+                </li>
+                <li class="span7 main-cell"
+                    ng-click="$parent.checkedSyncs = toggleCheck.toggleCheck(sync, syncs)">
+                    <div class="row-fluid">
+                        <div class="span1 img-cell">
+                            <i class="file-icon-medium file-folder"></i>
+                        </div>
+                        <div class="two-rows-cell">
+                            <strong>{{sync.folderName | specialName}}</strong>
+                            <em> {{sync.folderPath | specialPath}}</em>
+                        </div>
+                    </div>
+                </li>
+                <li class="span4">
+                    {{sync.createrName}}
+                </li>
+            </ul>
+            <div class="empty-tips">
+                <span ng-show="syncs.length === 0 && searchKey === null">您还没有对文件夹设置同步</span>
+                <span ng-show="syncs.length === 0 && searchKey != null">列表中没有数据</span>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade create-syncfolder"
+     modal-show="$parent.showCreateSyncFolder"
+     ng-controller="CreateSyncFolderCtrl">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3> 创建同步文件夹 </h3>
+    </div>
+    <div class="modal-body">
+        <ul class="sync-nav">
+            <li>
+                <span ng-click="changeStep('step1')"
+                      ng-class="step=='step1' && 'active'">1.选择文件夹</span>
+                <i class="icon-custom-dirt-right"></i>
+            </li>
+
+            <li>
+                <span ng-click="changeStep('step2')"
+                      ng-class="step=='step2' && 'active'">2.选择成员</span>
+                <i class="icon-custom-dirt-right"></i>
+            </li>
+            <li>
+                <span ng-click="changeStep('step3')"
+                      ng-class="step=='step3' && 'active'">3.完成</span>
+            </li>
+        </ul>
+        <div class="syncs-content">
+            <div class="select-folder" ng-show="step === 'step1'">
+                <div class="row-fluid sec-row-content"
+                     ent-folder-tree
+                     settings="{'showManageFolder': true,'showCheckBox':false}"
+                     onselect="onSelectFolder(selectFolder)">
+                </div>
+            </div>
+
+            <div class="select-users" ng-show="step === 'step2'">
+                <div class="row-fluid sec-row-content"
+                     dept-user-selector
+                     select-users="selectUsers"
+                     onselectdepts="onSelectDepts(depts)"
+                     onselectusers="onSelectUsers(users)">
+                </div>
+            </div>
+
+            <div class="sync-detail" ng-show="step === 'step3'">
+                <div class="select-folder">
+    <div class="folder-sync">
+        <strong>选择文件夹</strong>
+    </div>
+    <div class="folder-Info">
+        <ul class="row-fluid" style=" padding: 5px;">
+            <li class="span1 img-cell" style="line-height: 40px">
+                <a name='file-icon' class="file-icon-medium {{selectFolder.type|type2icon}}"></a>
+            </li>
+            <li>
+                <div>
+                    <strong class="show-block">{{selectFolder.name|specialName}}</strong>
+                    <span> {{selectFolder.path|specialPath}}</span>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="select-user">
+    <div class="row-fluid">
+        <strong class="fl">选择成员</strong>
+
+        <div class="pull-right">
+            <button class="btn btn-link"
+                    ng-click="changeStep('step2')">继续选择
+            </button>
+            <button class="btn btn-link">|</button>
+            <button class="btn btn-link"
+                    ng-click="selectUsers = []">清空
+            </button>
+        </div>
+    </div>
+    <div class="user-content">
+        <ul class="row-fluid" ng-repeat="user in selectUsers">
+            <li class="span1 img-cell" style="line-height: 40px">
+                <img class="img-avatar img-circle" ng-src="{{user.icon|usericon:user.gender}}"/>
+            </li>
+            <li class="span10 text-overflow">
+                <div>
+                    <strong class="show-block text-overflow">{{user.userName}}</strong>
+                    <span class="text-overflow">{{user.jobTitle || '-'}}</span>
+                </div>
+            </li>
+            <li class="span1" style="line-height: 40px;" ng-click="selectUsers.splice($index,1)">
+                <a><i class="icon-custom-delete-red"></i></a>
+            </li>
+        </ul>
+    </div>
+</div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-white-blue fl"
+                ng-show="step === 'step2' || step ==='step3'"
+                ng-click="previewStep()">
+            上一步
+        </button>
+        <button class="btn btn-blue"
+                ng-hide="step === 'step3'"
+                ng-click="nextStep()"> 下一步
+        </button>
+        <button class="btn btn-blue"
+                ng-show="step ==='step3'"
+                ng-click="confirm()">完成
+        </button>
+        <button class="btn btn-white-blue" data-dismiss="modal"> 取消</button>
+    </div>
+</div>
+    <div class="modal fade  see-sync-detail"
+     modal-show="$parent.showSyncDetail"
+     ng-controller="SyncDetailCtrl">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 class="modal-header-title" ng-show="page == 'sync-detail'">查看同步详情</h3>
+
+        <h3 class="modal-header-title" ng-show="page == 'select-users'">选择用户</h3>
+
+        <h3 class="modal-header-title" ng-show="page == 'select-folders'">选择文件夹</h3>
+    </div>
+    <div class="modal-body">
+        <div class="sync-content sync-detail" ng-show="page == 'sync-detail'">
+            <div class="select-folder">
+    <div class="folder-sync">
+        <strong>选择文件夹</strong>
+    </div>
+    <div class="folder-Info">
+        <ul class="row-fluid" style=" padding: 5px;">
+            <li class="span1 img-cell" style="line-height: 40px">
+                <a name='file-icon' class="file-icon-medium {{selectFolder.type|type2icon}}"></a>
+            </li>
+            <li>
+                <div>
+                    <strong class="show-block">{{selectFolder.name|specialName}}</strong>
+                    <span> {{selectFolder.path|specialPath}}</span>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="select-user">
+    <div class="row-fluid">
+        <strong class="fl">选择成员</strong>
+
+        <div class="pull-right">
+            <button class="btn btn-link"
+                    ng-click="changeStep('step2')">继续选择
+            </button>
+            <button class="btn btn-link">|</button>
+            <button class="btn btn-link"
+                    ng-click="selectUsers = []">清空
+            </button>
+        </div>
+    </div>
+    <div class="user-content">
+        <ul class="row-fluid" ng-repeat="user in selectUsers">
+            <li class="span1 img-cell" style="line-height: 40px">
+                <img class="img-avatar img-circle" ng-src="{{user.icon|usericon:user.gender}}"/>
+            </li>
+            <li class="span10 text-overflow">
+                <div>
+                    <strong class="show-block text-overflow">{{user.userName}}</strong>
+                    <span class="text-overflow">{{user.jobTitle || '-'}}</span>
+                </div>
+            </li>
+            <li class="span1" style="line-height: 40px;" ng-click="selectUsers.splice($index,1)">
+                <a><i class="icon-custom-delete-red"></i></a>
+            </li>
+        </ul>
+    </div>
+</div>
+        </div>
+        <div class="select-users" ng-show="page =='select-users'">
+            <div class="row-fluid sec-row-content"
+                 dept-user-selector
+                 select-users="selectUsers"
+                 onselectusers="onSelectUsers(users)">
+            </div>
+        </div>
+        <div class="select-folders" ng-show="page =='select-folders'">
+            <div class="row-fluid sec-row-content"
+                 ent-folder-tree
+                 settings="{'showManageFolder': true}"
+                 onselect="onSelectFolders(selectFolder)">
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div ng-show="page == 'sync-detail'">
+            <button class="btn btn-white-blue fl" ng-click="stopSync()">
+                终止同步
+            </button>
+            <button class="btn btn-blue"
+                    ng-click="confirmSync()"
+                    ng-class="commit && 'disabled'"> 确定
+            </button>
+            <button class="btn btn-white-blue"
+                    ng-class="commit && 'disabled'"
+                    ng-click="!commit && ($parent.showSyncDetail = false)"> 取消
+            </button>
+        </div>
+        <div ng-show="page != 'sync-detail'">
+            <button class="btn btn-blue"
+                    ng-click="changePage()"> 确定
+            </button>
+            <button class="btn btn-white-blue"
+                    ng-click="page = 'sync-detail'"> 取消
+            </button>
+        </div>
+    </div>
+</div>
+
+</div></script>
+<script id="versionmgr.html" type="text/ng-template">
+<div class="version-mgr right-content">
+    <div class="row-fluid row-header">
+        <div class="span12">
+            <i class="icon-custom-version-manage version-title"></i>
+            版本历史
+        </div>
+    </div>
+    <div class="row-fluid row-content" admin-resize="version-content">
+        <div class="row-fluid">
+            <div class="span7 version-left">
+                <div class="row-fluid">
+                    <div class="txt-check">
+                        <input class="radio-type" type="radio" ng-model="versionConfig.option" value="KeepAll" checked/>
+                        <span>保留所有历史版本</span>
+                    </div>
+                    <div class="txt-check">
+                        <input class="radio-type" type="radio" ng-model="versionConfig.option" value="KeepDays"/>
+                        <span>保留最近</span>
+                        <input class="text-size" type="text" placeholder="10" ng-model="daysValue">
+                        <span>天的历史版本</span>
+                    </div>
+                    <div class="txt-check">
+                        <input class="radio-type" type="radio" ng-model="versionConfig.option" value="KeepVersions"/>
+                        <span>仅保留</span>
+                        <input class="text-size" type="text" placeholder="10" ng-model="versionsValue">
+                        <span>个历史版本</span>
+                    </div>
+                    <div class="txt-check" style="margin-bottom: 15px">
+                        <input class="radio-type" type="radio" ng-model="versionConfig.option" value="NeverKeep"/>
+                        <span>不保留历史版本</span>
+                    </div>
+                </div>
+            </div>
+            <div class="span5 version-right">
+                <strong>温馨提示:</strong>
+
+                <ul class="tip-list">
+                    <li>您可以设置指定保留天数的文件版本.</li>
+                    <li>超出指定时间内的历史版本将会被清除.</li>
+                    <li>设置对所有云盘文件有效.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="row-fluid error-info" ng-show="errorinfo">
+            <div class="alert alert-danger"> {{errorinfo}}</div>
+        </div>
+    </div>
+    <div class="row-fluid row-footer">
+        <span class="btn btn-blue offset4" style="width:160px" ng-click="onSave()">保存</span>
+    </div>
+</div></script>
+<script id="recyclemgr.html" type="text/ng-template">
+<div class="recycle-mgr right-content">
+    <div class="row-fluid row-header">
+        <ul class="nav nav-tabs navtabs">
+            <li ng-class="fileType ==='sharedisk' && 'active'"
+                ng-click="fileType = 'sharedisk'">
+                <a href="#ent-tab" data-toggle="tab">{{'msgEntFile'|translate}}({{entPager.total || 0}})</a>
+            </li>
+            <li ng-class="fileType ==='onlinedisk' && 'active'"
+                ng-click="fileType = 'onlinedisk'">
+                <a href="#person-tab" data-toggle="tab">{{'msgPersonFile'|translate}}({{personPager.total || 0}})</a>
+            </li>
+        </ul>
+    </div>
+    <div class="row-content tab-content overflow-hidden">
+        <div id="ent-tab" class="tab-pane" ng-class="fileType ==='sharedisk' && 'active'">
+            <div class="row-fluid list-caption">
+    <div class="span4">
+        <button class="btn btn-link"
+                ng-click="emptAdminFiles()"
+                ng-show="checkedFiles.length == 0 && entPager.files.length != 0"> 清空
+        </button>
+        <button class="btn btn-link"
+                ng-click="restoreAdminFiles()"
+                ng-show="checkedFiles.length > 0 "> 还原
+        </button>
+        <button class="btn btn-link"
+                ng-click="deleteAdminFiles()"
+                ng-show="checkedFiles.length > 0"> 删除
+        </button>
+    </div>
+    <div class="span8">
+        <div class="form-search pull-right">
+            <div search-box
+                 placeholder="请输入您要搜索的文件名"
+                 search="onSearch(searchKey)"
+                 cancel="goBack()">
+            </div>
+        </div>
+    </div>
+</div>
+<ul class="row-fluid list-header">
+    <li class="span1">
+            <span class="checkbox-sprite"
+                  ng-class="checkedFiles.length && checkedFiles.length === entPager.files.length && 'true' "
+                  ng-click="toggleCheckAll()"></span>
+    </li>
+    <li class="span6">文件名</li>
+    <li class="span1">大小</li>
+    <li class="span2">操作人</li>
+    <li class="span2">操作时间</li>
+</ul>
+<div class="row-fluid list-body"
+     admin-resize="recycle-items"
+     ng-show="entPager.files.length > 0">
+    <ul class="row-fluid list-items"
+        ng-repeat="recycleFile in entPager.files">
+        <li class="span1">
+    <span class="checkbox-sprite"
+          ng-class="recycleFile.checked && 'true' "
+          ng-click="multiCheck(recycleFile)"></span>
+</li>
+<li class="span6 main-cell"
+    ng-click="toggleCheck(recycleFile)">
+    <div class="row-fluid">
+        <div class="span2 img-cell text-right">
+            <i class="file-icon-medium {{recycleFile.type|type2icon}}"></i>
+        </div>
+        <div class="span10 margin-left0 text-left two-rows-cell">
+            <strong>{{recycleFile.name | specialName: recycleFile.fileType}}</strong>
+            <em>{{recycleFile.path | specialPath: recycleFile.fileType}}</em>
+        </div>
+    </div>
+</li>
+<li class="span1">
+    {{recycleFile.size|sizeFilter}}
+</li>
+<li class="span2 text-overflow font-mini">
+    {{recycleFile.updateUserName}}
+</li>
+<li class="span2 font-mini text-overflow">
+    {{recycleFile.updateTime|dateTime}}
+</li>
+    </ul>
+</div>
+<div class="pagination" ng-show="entPager.files.length > 0 ">
+    <pagination class="show-block"
+                total-items="entPager.total"
+                items-per-page="entPager.perPage"
+                ng-model="entPager.current"
+                max-size="entPager.maxSize"
+                previous-text="上一页"
+                next-text="下一页"
+                boundary-links="false"
+                rotate="false"
+                num-pages="entPager.numPages"></pagination>
+</div>
+<div class="empty-tips">
+    <span ng-show="entPager.files.length === 0 ">列表中没有数据</span>
+</div>
+
+        </div>
+        <div id="person-tab" class="tab-pane" ng-class="fileType ==='onlinedisk' && 'active'">
+            <div class="row-fluid list-caption">
+    <div class="span4">
+        <button class="btn btn-link"
+                ng-click="emptAdminFiles()"
+                ng-show="checkedFiles.length == 0 && personPager.files.length !=0"> 清空
+        </button>
+        <button class="btn btn-link"
+                ng-click="restoreAdminFiles()"
+                ng-show="checkedFiles.length > 0"> 还原
+        </button>
+        <button class="btn btn-link"
+                ng-click="deleteAdminFiles()"
+                ng-show="checkedFiles.length > 0"> 删除
+        </button>
+    </div>
+    <div class="span8">
+        <div class="form-search pull-right">
+            <div class="input-prepend input-append">
+                <div search-box
+                     placeholder="请输入您要搜索的文件名"
+                     search="onSearch(searchKey)"
+                     cancel="goBack()">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<ul class="row-fluid list-header">
+    <li class="span1">
+            <span class="checkbox-sprite"
+                  ng-class="checkedFiles.length && checkedFiles.length === personPager.files.length && 'true' "
+                  ng-click="toggleCheckAll()"></span>
+    </li>
+    <li class="span6 file-name">文件名</li>
+    <li class="span1 file-size">大小</li>
+    <li class="span2 file-user">操作人</li>
+    <li class="span2 file-time">操作时间</li>
+</ul>
+<div class="list-body overflow-auto"
+     admin-resize="recycle-items"
+     ng-show="personPager.files.length > 0 ">
+    <ul class="row-fluid list-items"
+        ng-repeat="recycleFile in personPager.files">
+        <li class="span1">
+    <span class="checkbox-sprite"
+          ng-class="recycleFile.checked && 'true' "
+          ng-click="multiCheck(recycleFile)"></span>
+</li>
+<li class="span6 main-cell"
+    ng-click="toggleCheck(recycleFile)">
+    <div class="row-fluid">
+        <div class="span2 img-cell text-right">
+            <i class="file-icon-medium {{recycleFile.type|type2icon}}"></i>
+        </div>
+        <div class="span10 margin-left0 text-left two-rows-cell">
+            <strong>{{recycleFile.name | specialName: recycleFile.fileType}}</strong>
+            <em>{{recycleFile.path | specialPath: recycleFile.fileType}}</em>
+        </div>
+    </div>
+</li>
+<li class="span1">
+    {{recycleFile.size|sizeFilter}}
+</li>
+<li class="span2 text-overflow font-mini">
+    {{recycleFile.updateUserName}}
+</li>
+<li class="span2 font-mini text-overflow">
+    {{recycleFile.updateTime|dateTime}}
+</li>
+    </ul>
+</div>
+<div class="pagination" ng-show="personPager.files.length > 0 ">
+    <pagination class="show-block"
+                total-items="personPager.total"
+                items-per-page="personPager.perPage"
+                ng-model="personPager.current"
+                max-size="personPager.maxSize"
+                previous-text="上一页"
+                next-text="下一页"
+                boundary-links="false"
+                rotate="false"
+                num-pages="personPager.numPages"></pagination>
+</div>
+<div class="empty-tips">
+    <span ng-show="personPager.files.length === 0">列表中没有数据</span>
+</div>
+
+        </div>
+    </div>
+</div></script>
+
+<script id="operatelog.html" type="text/ng-template">
+<div class="operate-log right-content">
+    <div class="row-fluid row-header">
+        <i class="icon-custom-operation"></i> 操作日志
+        <button class="btn btn-blue export-log" ng-click="exportLog()">导出日志</button>
+        <span class="header-tips"><strong>温馨提示:</strong>
+            <span style="font-weight: 300;">您可以查看/导出一年内的日志</span>
+        </span>
+    </div>
+    <div class="row-fluid row-content">
+        <div class="row-fluid" style="margin: 3px 4px;">
+            <div class="span2 text-overflow">
+                共 <strong>{{pager.total}}</strong>条日志
+            </div>
+            <div class="span10">
+                <div class="form-search pull-right">
+                    <div search-box
+                         placeholder="请输入您要搜索的内容"
+                         search="onSearch(searchKey)"
+                         cancel="goBack()">
+                    </div>
+                    <button class="btn btn-link" ng-click="toggleSearch()">
+                        <span ng-show="!searchMode">高级搜索 <i class="fa fa-caret-up"></i></span>
+                        <span ng-show="searchMode">退出搜索 <i class="fa fa-caret-down"></i></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="row-fluid log-search" ng-show="showSearch">
+            <form class="form-vertical">
+    <div class="control-group row-fluid">
+        <label class="control-label span2  text-overflow">搜索条件: </label>
+
+        <div class="controls span10">
+            <div class="row-fluid">
+                <div class="span10">
+                    <ul class="row-fluid">
+                        <li class="label label-blue">
+                            {{pager.operationTag()}}
+                        </li>
+                        <li class="label label-blue" ng-show="pager.targetName">
+                            {{pager.targetName}}
+                            <i class="fa fa-times cursor-pointer" ng-click="pager.targetName = null"></i>
+                        </li>
+                        <li class="label label-blue" ng-show="pager.operatorName">
+                            {{pager.operatorName}}
+                            <i class="fa fa-times cursor-pointer" ng-click="pager.operatorName = null"></i>
+                        </li>
+                        <li class="label label-blue" ng-show="pager.timeMode">
+                            {{pager.showTimeMode()}}
+                            <i class="fa fa-times cursor-pointer" ng-click="pager.clearTime()"></i>
+                        </li>
+                        <li class="label label-blue" ng-show="!pager.timeMode && pager.startTime">
+                            {{pager.startTime}} - {{pager.endTime}}
+                            <i class="fa fa-times cursor-pointer" ng-click="pager.clearTime()"></i>
+                        </li>
+                    </ul>
+                </div>
+                <div class="span2">
+                    <button class="btn btn-blue" ng-click="onSearch()">开始搜索</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="control-group row-fluid">
+        <label class="control-label span2 ">类型: </label>
+
+        <div class="controls span10">
+            <ul class="row-fluid operate-types">
+                <li class="btn btn-link " ng-click="pager.setOperation('all')">所有</li>
+                <li class="btn btn-link " ng-click="pager.setOperation('logon')">登录</li>
+                <li class="btn btn-link " ng-click="pager.setOperation('Create')">新建</li>
+                <li class="btn btn-link " ng-click="pager.setOperation('Upload')">上传</li>
+                <li class="btn btn-link " ng-click="pager.setOperation('Download')">下载</li>
+                <li class="btn btn-link " ng-click="pager.setOperation('Edit')">编辑</li>
+                <li class="btn btn-link " ng-click="pager.setOperation('EntLink')">分享</li>
+                <li class="btn btn-link " ng-click="pager.setOperation('Move')">移动</li>
+                <li class="btn btn-link " ng-click="pager.setOperation('Preview')">预览</li>
+                <li class="btn btn-link " ng-click="pager.setOperation('Rename')">重命名</li>
+                <li class="btn btn-link " ng-click="pager.setOperation('DeleteToRecycle')">删除</li>
+            </ul>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label span2 ">文件名: </label>
+
+        <div class="controls span10">
+            <input class="input-xlarge" type="text" ng-model="pager.targetName"/>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label span2 ">操作人: </label>
+
+        <div class="controls span10">
+            <div class="input-append">
+                <input class="input-xlarge" type="text" ng-model="pager.operatorName"/>
+                    <span class="add-on btn btn-link" ng-click="showSelectUser = true">
+                        选择账号
+                    </span>
+            </div>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label span2 ">时间: </label>
+
+        <div class="controls span10">
+            <ul class="row-fluid">
+                <li class="btn btn-link" ng-click="pager.setTime('1day')">今天</li>
+                <li class="btn btn-link" ng-click="pager.setTime('1week')">最近一周</li>
+                <li class="btn btn-link" ng-click="pager.setTime('1month')">最近一月</li>
+                <li class="btn btn-link" ng-click="pager.setTime('3month')">最近三月</li>
+                <li class="btn btn-link" ng-click="pager.setTime('1year')">最近一年</li>
+                <li class="btn btn-link"
+                    qy-popover
+                    data-toggle="popover"
+                    data-trigger="click"
+                    data-html="true"
+                    data-placement="top"
+                    data-content="timeHtml"
+                    ng-click="pager.setTime('userdef')"> 自定义
+                </li>
+            </ul>
+        </div>
+    </div>
+</form>
+<div class="modal fade select-user"
+     modal-show="showSelectUser">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3> 选择账号</h3>
+    </div>
+    <div class="modal-body">
+        <div class="span6 user-list"
+             dept-user-tree
+             settings="{'dblclick': false}"
+             onselectuser="onSelectUser(user)">
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-blue"
+                data-dismiss="modal"> 确定
+        </button>
+        <button class="btn btn-white-blue"
+                ng-click="onSelectUser(null); showSelectUser = false"> 取消
+        </button>
+    </div>
+</div>
+
+        </div>
+        <ul class="row-fluid list-header">
+            <li class="span2">操作时间</li>
+            <li class="span2">操作人</li>
+            <li class="span2">操作</li>
+            <li class="span3 text-left">文件\文件夹</li>
+            <li class="span3 text-left">所属文件夹</li>
+        </ul>
+        <div class="row-fluid list-body"
+             admin-resize="log-items"
+             ng-show="pager.logs.length > 0">
+            <ul class="row-fluid list-items" ng-repeat="log in pager.logs">
+                <li class="span2 font-mini text-overflow">{{log.logTime | dateTime}}</li>
+                <li class="span2 text-overflow">{{log.displayName}}</li>
+                <li class="span2 text-overflow">{{log.operation | operationTag: log.module}}</li>
+                <li class="span3 text-overflow main-cell" style="line-height: 1.3em">
+                    <div class="row-fluid" ng-show="log.operation === 'Rename'">
+                        <strong title="{{log.targetName | specialName}}"
+                                ng-bind="'后: ' + (log.targetName | specialName)"></strong>
+                        <strong title="{{log.remark}}" ng-bind="'前: ' + log.remark"></strong>
+                    </div>
+                    <div class="row-fluid" ng-show="log.operation === 'Move'">
+                        <strong title="{{log.remark}}" ng-bind="'前: ' + log.remark"></strong>
+                        <strong title="{{log.targetName | specialName}}"
+                                ng-bind="'后: ' + (log.targetName | specialName)"></strong>
+                    </div>
+                    <div class="row-fluid" style="line-height: 3em" ng-show="log.operation !== 'Rename' && log.operation !== 'Move'">
+                        {{log.targetName|specialName}}
+                    </div>
+                </li>
+                <li class="span3 text-overflow text-left" title="{{log.targetPath | specialPath}}">
+                    {{log.targetPath | specialPath}}
+                </li>
+            </ul>
+        </div>
+        <div class="pagination pagination-mini" style="margin-bottom: 0" ng-show="pager.logs.length > 0 ">
+            <pagination class="show-block"
+                        total-items="pager.total"
+                        items-per-page="pager.perPage"
+                        ng-model="pager.current"
+                        max-size="pager.maxSize"
+                        previous-text="上一页"
+                        next-text="下一页"
+                        boundary-links="false"
+                        rotate="false"
+                        num-pages="pager.numPages"></pagination>
+        </div>
+        <div class="empty-tips" ng-show="!showSearch && pager.logs.length === 0">
+            <span>列表中没有记录</span>
+        </div>
+        <div class="log-tips" style="color: #999">
+            注:日志中(前/后)代表文件移动/复制/重命名(前/后)相对应的文件信息
+        </div>
+    </div>
+    <div class="modal fade export-operate-log"
+     modal-show="modal.exportOperateLog">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3>操作日志导出</h3>
+    </div>
+    <div class="modal-body">
+        <div class="status-info" ng-show="exportStatus === 'exporting'">
+            日志后台导出中...
+        </div>
+        <div class="status-info" ng-show="exportStatus === 'ok'">
+            <i class="icon-custom-noty-confirm"></i> 日志导出完成! 点击下面的下载按钮进行下载!
+        </div>
+        <div class="status-info" ng-show="exportStatus === 'error'">
+            导出操作日志失败!
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a class="btn btn-blue downloadLog" ng-href="{{downloadUrl}}" ng-show="exportStatus === 'ok'">
+            下载日志
+        </a>
+        <button class="btn btn-white-blue" ng-click="onClose()"> 关闭</button>
+    </div>
+</div>
+</div></script>
+<script id="ChatLog.html" type="text/ng-template">
+<div class="right-content chat-log" admin-resize="chat-log">
+    <div class="row-fluid row-header">
+        <div class="span3">
+            <i class="icon-custom-chat-log"></i>聊天日志
+        </div>
+        <div class="span9">
+            <div class="form-search pull-right">
+                <div search-box
+                     placeholder="请输入您要搜索的聊天内容"
+                     search="onSearch(searchKey)"
+                     cancel="goBack()"></div>
+            </div>
+        </div>
+    </div>
+    <div class="row-content">
+        <div class="chat-content" ng-show="!showSearch">
+
+            <div class="user-list">
+                <div class="row-fluid chat-header" ng-show="!isSearchUser">
+                    <span class="fl">成员列表</span>
+                    <i class="fr icon-custom-search-blue" ng-click="isSearchUser = true"></i>
+                </div>
+                <div ng-show="isSearchUser"
+                     search-box
+                     placeholder="姓名或账号"
+                     search="searchUser(searchKey)"
+                     cancel="cancelSearchUser()"></div>
+                <div ng-show="!isSearchUser"
+                     class="user-items"
+                     dept-user-tree
+                     settings="{'hideSearch': true}"
+                     onselectuser="onSelectUser(user)">
+                </div>
+                <div class="row-fluid search-users" ng-show="isSearchUser">
+                    <div class="search-user-item"
+                         ng-repeat="user in searchUsers"
+                         ng-class="{'active': user.userId === chatPager.senderId}"
+                         ng-click="onSelectUser(user)">
+                        <div user-item user="user"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chat-object">
+                <div class="row-fluid chat-header" ng-show="!isSearchObject">
+                    <span class="fl">聊天对象</span>
+                    <i class="fr icon-custom-search-blue" ng-click="isSearchObject = true"></i>
+                </div>
+                <div ng-show="isSearchObject"
+                     search-box
+                     placeholder="姓名或账号"
+                     search="searchObject(searchKey)"
+                     cancel="cancelSearchObject()"></div>
+                <div class="chat-object-body">
+                    <div class="row-fluid chat-user-item"
+                         ng-class="{'active': user.userId === chatPager.receiverId}"
+                         ng-click="showChatLog(user)"
+                         ng-repeat="user in chatUsers">
+                        <div user-item user="user"></div>
+                    </div>
+                    <div class="empty-tips" ng-show="chatUsers.length === 0">
+                        <span>没有聊天对象</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chat-info">
+                <div class="row-fluid chat-header" style="height: 25px;">
+    <span class="fl">聊天内容</span>
+    <span class="btn btn-link fr"
+          ng-click="exportChatLog()"
+          style="line-height: 14px;">
+        导出
+    </span>
+
+    <div class="select-time fr">
+        <div class="input-append date"
+     datetimepicker>
+    <input class="input-small" jq-placeholder="开始时间" type="text" ng-model="chatPager.startTime"/>
+    <span class="add-on"><i class="icon-calendar"></i></span>
+</div>
+<div class="input-append date"
+     datetimepicker>
+    <input class="input-small" jq-placeholder="结束时间" type="text" ng-model="chatPager.endTime"/>
+    <span class="add-on"><i class="icon-calendar"></i></span>
+</div>
+    </div>
+</div>
+<div class="chat-list-body" ng-show="chatPager.msgList.length">
+    <ul class="msg-list"
+        ng-show="chatPager.msgList.length"
+        ng-repeat="message in chatPager.msgList">
+        <li class="row-fluid time-header" ng-show="message.header">
+            <strong>------{{message.sendTime|dateTime:'YYYY-MM-DD'}}------</strong>
+        </li>
+        <li class="row-fluid"
+            ng-class="{'sender-name': message.senderId === chatPager.senderId, 'receiver-name': message.senderId===chatPager.receiverId}">
+            {{message.senderName}}
+            <span class="font-mini">{{message.sendTime|dateTime:'hh:mm:ss'}}</span>
+        </li>
+        <li class="row-fliud send-body">
+            {{message|chatMsgBody}}
+        </li>
+    </ul>
+</div>
+<div class="empty-tips" ng-show="chatPager.msgList.length === 0">
+    <span>无任何内容!</span>
+</div>
+<div class="pagination pagination-mini"
+     ng-show="chatPager.msgList.length > 0 ">
+    <pagination class="show-block"
+                total-items="chatPager.total"
+                items-per-page="chatPager.perPage"
+                ng-model="chatPager.current"
+                max-size="chatPager.maxSize"
+                previous-text="上一页"
+                next-text="下一页"
+                boundary-links="false"
+                rotate="false"
+                num-pages="chatPager.numPages"></pagination>
+</div>
+<div class="modal fade export-operate-log"
+     modal-show="modal.exportChatLog">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3>聊天日志导出</h3>
+    </div>
+    <div class="modal-body">
+        <div class="status-info" ng-show="exportStatus === 'exporting'">
+            日志后台导出中...
+        </div>
+        <div class="status-info" ng-show="exportStatus === 'ok'">
+            <i class="icon-custom-noty-confirm"></i> 日志导出完成! 点击下面的下载按钮进行下载!
+        </div>
+        <div class="status-info" ng-show="exportStatus === 'error'">
+            导出聊天日志失败!
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a class="btn btn-blue downloadLog"
+           target="_blank"
+           ng-href="{{downloadUrl}}"
+           ng-show="exportStatus === 'ok'">
+            下载日志
+        </a>
+        <button class="btn btn-white-blue" ng-click="onClose()"> 关闭</button>
+    </div>
+</div>
+            </div>
+        </div>
+
+        <div class="chat-search" ng-show="showSearch">
+            <div class="search-header">共搜索到
+    <strong style="color:#0088cc;">{{chatPager.total}}</strong>
+    相关内容
+</div>
+<div class="search-list">
+    <ul class="chat-list-item" ng-repeat="message in chatPager.msgList">
+        <li class="row-fluid">
+            <ul class="row-fluid">
+                <li class="span1 text-right">
+                    <img class="img-circle" ng-src="{{user.icon|usericon:user.gender}}" alt="Icon"/>
+                </li>
+                <li class="span8">
+                    <div>
+                        <strong>{{message.senderName}}</strong>
+                    </div>
+                    <div style="color: #757474;">
+                        {{message.sendTime|dateTime}}
+                    </div>
+                </li>
+                <li class="span3 btn btn-link"
+                    ng-click="showDetail(message)">查看详情
+                </li>
+            </ul>
+        </li>
+        <li class="row-fluid">
+            <div class="msg-body">{{message|chatMsgBody}}</div>
+        </li>
+    </ul>
+</div>
+<div class="pagination pagination-mini"
+     ng-show="chatPager.msgList.length > 0 ">
+    <pagination class="show-block"
+                total-items="chatPager.total"
+                items-per-page="chatPager.perPage"
+                ng-model="chatPager.current"
+                max-size="chatPager.maxSize"
+                previous-text="上一页"
+                next-text="下一页"
+                boundary-links="false"
+                rotate="false"
+                num-pages="chatPager.numPages"></pagination>
+</div>
+
+        </div>
+    </div>
+</div></script>
+
+<script id="DomainMgr.html" type="text/ng-template">
+<div class="right-content domain-setting overflow-auto-y">
+    <div class="row-fluid row-header">
+        <i class="icon-custom-doMain-setting"></i>
+        <span style="font-size:16px;">域设置</span>
+    </div>
+    <div class="row-fluid row-content">
+        <form class="form-vertical  " name="domainForm" style="padding-left:10px;">
+            <div class="base-setting-title title">基础设置</div>
+
+            <div class="control-group">
+                <label class="control-label">域设置</label>
+                <div class="controls">
+                    <select ng-model="domainConfig.ldapType" style="margin-bottom:0;">
+                        <option value="OpenLdap">Ldap</option>
+                        <option value="AD">AD</option>
+                        <option value="Domino">Domino</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label">域服务器地址</label>
+                <div class="controls">
+                    <input type="text"
+                           name="domainService"
+                           required="true"
+                           jq-placeholder="示例：ldap://192.168.1.131:389/"
+                           ng-model="domainConfig.ldapUrl"/>
+                </div>
+                <div ng-show="domainForm.domainService.$dirty && domainForm.domainService.$invalid">
+                    <span ng-show="domainForm.domainService.$error.required" class="red error-tip">请输入域服务地址</span>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label">域名</label>
+                <div class="controls">
+                    <input type="text" name="domainName" required="true" jq-placeholder="示例：dc=test,dc=com" ng-model="domainConfig.dominName"/>
+                </div>
+                <div ng-show="domainForm.domainName.$dirty && domainForm.domainName.$invalid">
+                    <span ng-show="domainForm.domainName.$error.required" class="red error-tip">请输入域名</span>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">域管理员账号</label>
+
+                <div class="controls">
+                    <input type="text"
+                           name="domainUser"
+                           required="true"
+                           jq-placeholder="示例：administrator@test.com"
+                           ng-model="domainConfig.userName"/>
+                </div>
+                <div ng-show="domainForm.domainUser.$dirty && domainForm.domainUser.$invalid">
+                    <span ng-show="domainForm.domainUser.$error.required" class="red error-tip">请输入域管理员账号</span>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">域管理员密码</label>
+
+                <div class="controls">
+                    <input type="password"
+                           name="domainPassword"
+                           required="true"
+                           placeholder="示例：test@oatos2468"
+                           ng-model="domainConfig.password"/>
+                </div>
+                <div ng-show="domainForm.domainPassword.$dirty && domainForm.domainPassword.$invalid">
+                    <span ng-show="domainForm.domainPassword.$error.required" class="red error-tip">请输入域管理员密码</span>
+                </div>
+            </div>
+
+            <div class="base-setting-title title" style="margin-top:30px;">高级设置</div>
+            <div class="control-group">
+                <label class="control-label">指定同步OU路径</label>
+
+                <div class="controls">
+                    <input type="text" jq-placeholder="示例：ou=研发部,ou=企业云" ng-model="domainConfig.ou"/>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">同步人员和组织架构</label>
+
+                <div class="controls">
+                    排除属性&nbsp;<input type="text" jq-placeholder="示例：disable" style="width:88px;" ng-model="domainConfig.userFilterKey"/> =
+                    <input type="text" name="domainName" jq-placeholder="示例：false" style="width:88px;" ng-model="domainConfig.userFilterVal"/>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label"><input type="checkbox" ng-model="domainConfig.syncGroup" style="margin:0;"/>&nbsp;同步群组至角色</label>
+
+                <div class="controls">
+                    排除属性&nbsp;<input type="text" jq-placeholder="示例：disable" style="width:88px;" ng-model="domainConfig.groupFilterKey"/> =
+                    <input type="text" jq-placeholder="示例：false" style="width:88px;" ng-model="domainConfig.groupFilterVal"/>
+                </div>
+            </div>
+
+            <div class="control-group hide-force">
+                <div class="controls">
+                    每隔&nbsp;<select style="display:inline-block;width:88px;">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3" selected="selected">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>&nbsp;小时同步一次 （为了保证同步的准确性，建议您将同步间隔时间设置为3小时）
+                </div>
+            </div>
+            <div class="control-group ac" style="margin-top: 30px;">
+                <button class="btn btn-blue" ng-click="save()">测试并保存</button>
+            </div>
+        </form>
+    </div>
+</div></script>
+<script id="MailSetting.html" type="text/ng-template">
+<div class="right-content mail-setting">
+    <div class="row-fluid row-header">
+        <i class="icon-custom-mail-setting"></i>
+        <span>邮箱设置</span>
+    </div>
+    <div class="row-fluid row-content">
+        <form class="form-vertical" name="mailForm">
+            <div class="control-group">
+                <label class="control-label">发件服务器</label>
+
+                <div class="controls">
+                    <input type="text"
+                           class="input-xlarge"
+                           name="sendService"
+                           ng-model="mailLoader.sendHost"
+                           required="true"
+                           jq-placeholder="发送邮件服务器地址"/>
+                </div>
+                <div ng-show="mailForm.sendService.$dirty && mailForm.sendService.$invalid">
+                    <span ng-show="mailForm.sendService.$error.required"
+                          class="red error-tip">请输入服务器地址</span>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">端口</label>
+
+                <div class="controls">
+                    <input type="text"
+                           class="input-xlarge"
+                           name="port"
+                           required="true"
+                           ng-model="mailLoader.sendPort"
+                           jq-placeholder="发送邮件服务器端口号"/>
+                </div>
+                <div ng-show="mailForm.port.$dirty && mailForm.port.$invalid">
+                    <span ng-show="mailForm.port.$error.required"
+                          class="red error-tip">请输入服务器端口号</span>
+                </div>
+            </div>
+            <div class="divider"></div>
+            <div class="control-group" style="padding-top: 10px;">
+                <label class="control-label">Email地址</label>
+
+                <div class="controls">
+                    <input type="email"
+                           class="input-xlarge"
+                           name="email"
+                           required="true"
+                           ng-model="mailLoader.userName"
+                           jq-placeholder="发件Email地址"/>
+                </div>
+                <div ng-show="mailForm.email.$dirty && mailForm.email.$invalid">
+                    <span ng-show="mailForm.email.$error.required"
+                          class="red error-tip">请输入Email地址</span>
+                     <span ng-show="mailForm.email.$error.email"
+                           class="red error-tip">{{'msgEmailFormatError'|translate}}</span>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">密码</label>
+
+                <div class="controls">
+                    <input type="password"
+                           class="input-xlarge"
+                           name="password"
+                           required="true"
+                           ng-model="mailLoader.password"
+                           jq-placeholder="登入Email密码"/>
+                </div>
+                <div ng-show="mailForm.password.$dirty && mailForm.password.$invalid">
+                    <span ng-show="mailForm.password.$error.required"
+                          class="red error-tip">请输入密码</span>
+                </div>
+            </div>
+            <div class="control-group ac" style="margin-top: 30px;">
+                <button class="btn btn-blue"
+                        ng-click="saveMail()">保存
+                </button>
+            </div>
+        </form>
+    </div>
+</div></script>
+<script type="text/javascript">
+
+seajs.use([
+'/os/sea-modules/jquery/jquery-all.js', 
+'/os/sea-modules/commons/commons-all.js', 
+'/os/sea-modules/swf/swf-all.js', 
+'/os/sea-modules/angular/angular-all.js', 
+'/os/sea-modules/app/support/main.js'
+], function() {
+    seajs.use('/os/sea-modules/app/admin/main.js', function() {
+        $(".welcomePage").addClass('hide-force');
+    }
+    );
+}
+);
+</script>
+</body>
+
+</html>

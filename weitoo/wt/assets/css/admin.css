@@ -1,0 +1,611 @@
+.bg - img - file - left - bottom {
+    background - color: #147ec3;background-image:-moz-linear-gradient(to bottom,# 1888 cf, #0e74bf);background-image:-webkit-linear-gradient(to bottom,# 1888 cf, #0e74bf);background-image:-o-linear-gradient(to bottom,# 1888 cf, #0e74bf);background-image:-ms-linear-gradient(to bottom,# 1888 cf, #0e74bf);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr= '#1888cf', endColorstr = '#0e74bf'); - ms - filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#1888cf', endColorstr='#0e74bf')";
+background - image: linear - gradient(to bottom, #1888cf,# 0e74 bf)
+}.clearfix { * zoom: 1
+}.clearfix: before, .clearfix: after {
+    display: table;content: "";line - height: 0
+}.clearfix: after {
+    clear: both
+}.hide - text {
+    font: 0 / 0 a;color: transparent;text - shadow: none;background - color: transparent;border: 0
+}.input - block - level {
+    display: block;width: 100 % ;min - height: 30 px; - webkit - box - sizing: border - box; - moz - box - sizing: border - box;box - sizing: border - box
+}#
+mainbox {
+    background - color: #ebf2f5
+}.header {
+    font - family: 'microsoft yahei'
+}.header.header - logo {
+    width: 250 px
+}.header.header - logo.logo - img {
+    margin - right: 50 px;
+    background - image: none
+}.header.custom - header.row - right {
+    font - size: 15 px
+}.header.custom - header.row - right > div {
+    display: inline - block;padding: 0 10 px
+}.header.custom - header.row - right.user - info {
+    min - width: 90 px;
+    height: 30 px;
+    white - space: nowrap
+}.header.custom - header.row - right.user - info > img {
+    width: 28 px;height: 28 px;background - color: #fff
+}.header.custom - header.row - right.border - cell {
+    line - height: 1.2e m;
+    border - right: 1 px solid# DDD;
+    height: 20 px
+}.header.custom - header.row - right.sign - out {
+    width: 100 px;padding - right: 30 px;cursor: pointer
+}.admin - left {
+    display: inline - block;width: 175 px;height: 100 % ;padding - top: 5 px;background - color: #fff;overflow: hidden
+}.admin - left.nav - list {
+    padding: 0 30 px
+}.admin - left.nav - list.nav - header {
+    margin: 0 - 30 px;padding - left: 20 px;border - top: 1 px solid# f2e6e6
+}.admin - left.nav - list.nav - header div {
+    padding: 3 px 40 px;height: 30 px;margin: 0 - 40 px;line - height: 2.1e m
+}.admin - left.nav - list > li {
+    font - size: 1.2e m;
+    margin: 0
+}.admin - left.nav - list > li > i {
+    margin - top: 8 px;
+    margin - right: 5 px
+}.admin - left.nav - list > li.border {
+    border - bottom: 1 px solid# f2e6e6
+}.admin - left.nav - list > li > a {
+    margin: 0 - 30 px;padding: 3 px 41 px;height: 31 px;line - height: 2e m
+}.admin - right {
+    display: inline - block;vertical - align: top;margin: 25 px 20 px;overflow: hidden
+}.admin - right.right - content {
+    padding - left: 10 px;
+    padding - right: 10 px;
+    background - color: #fff;
+    margin - bottom: 30 px;
+    height: 100 % ;
+    border: 1 px solid# ddd
+}.admin - right.right - content.role - mgr {
+    padding: 0
+}.admin - right.right - content.row - header {
+    border - bottom: 1 px solid# ddd;
+    height: 2.6e m;
+    line - height: 2.6e m;
+    font - size: 15 px;
+    font - weight: 700
+}.admin - right.right - content.row - header.form - search.add - on {
+    margin - top: 4 px;
+    background - color: #fff;
+    cursor: pointer
+}.admin - right.right - content.row - header.form - search.go - back {
+    color: #08c;margin-right:-2px;width:35px;cursor:pointer}.admin-right .right-content .row-header input{width:185px}.admin-right .right-content .list-header{background-color:# f5f5f5;height: 30 px;color: gray;line - height: 1.1e m;border: 1 px solid# ddd;border - right: 0
+}.admin - right.right - content.list - header > li {
+    text - align: center;
+    line - height: 2.5e m;
+    border - right: 1 px solid# ddd;
+    overflow: hidden;
+    text - overflow: ellipsis;
+    white - space: nowrap
+}.admin - right.right - content.list - body {
+    overflow: auto;border - left: 1 px solid# ddd;border - right: 1 px solid# ddd;border - bottom: 1 px solid# ddd
+}.admin - right.right - content.list - body ul.list - items {
+    text - align: center;
+    height: 40 px;
+    font - size: 14 px;
+    border - bottom: 1 px solid# ddd;
+    overflow: hidden
+}.admin - right.right - content.list - body ul.list - items: hover {
+    cursor: pointer;background - color: #ebf2f5
+}.admin - right.right - content.list - body ul.list - items > li {
+    vertical - align: middle;
+    line - height: 2.7e m
+}.admin - right.right - content.list - body ul.list - items > li.main - cell {
+    text - align: left;
+    line - height: 1.8e m
+}.admin - right.right - content.list - body ul.list - items > li.main - cell.two - rows - cell {
+    line - height: 1.4e m;
+    margin - left: 0
+}.admin - right.right - content.list - body ul.list - items > li.main - cell.img - cell {
+    line - height: 3e m;
+    max - width: 32 px;
+    margin - right: 4 px
+}.admin - right.right - content.list - body ul.list - items > li strong {
+    display: block;overflow: hidden;text - overflow: ellipsis;white - space: nowrap
+}.admin - right.right - content.list - body ul.list - items > li em {
+    color: #a9a9a9;display: block;overflow: hidden;text - overflow: ellipsis;white - space: nowrap
+}.services - status.entdisk - service, .services - status.user - service, .services - status.value - added {
+    height: 105 px;background - color: #fff;margin - bottom: 30 px;border: 1 px solid# ddd
+}.services - status.entdisk - service.row - fluid.row - header, .services - status.user - service.row - fluid.row - header, .services - status.value - added.row - fluid.row - header {
+    border - bottom: 1 px solid# ddd;
+    margin - bottom: 5 px;
+    line - height: 2.3e m;
+    font - size: 14 px;
+    font - weight: 700
+}.services - status.entdisk - service.row - fluid.row - header > div: first - child, .services - status.user - service.row - fluid.row - header > div: first - child, .services - status.value - added.row - fluid.row - header > div: first - child {
+    padding - left: 10 px
+}.services - status.entdisk - service.row - fluid.two, .services - status.user - service.row - fluid.two, .services - status.value - added.row - fluid.two {
+    vertical - align: bottom;
+    padding - top: 10 px;
+    height: 30 px
+}.services - status.entdisk - service.row - fluid.two > div: first - child, .services - status.user - service.row - fluid.two > div: first - child, .services - status.value - added.row - fluid.two > div: first - child {
+    padding - left: 10 px
+}.services - status.entdisk - service.row - fluid.three, .services - status.user - service.row - fluid.three, .services - status.value - added.row - fluid.three {
+    font - size: 13 px;
+    line - height: .1e m;
+    text - align: center
+}.services - status.entdisk - service.row - fluid.three > div: first - child, .services - status.user - service.row - fluid.three > div: first - child, .services - status.value - added.row - fluid.three > div: first - child {
+    padding - left: 10 px
+}.services - status.entdisk - service.progress, .services - status.user - service.progress, .services - status.value - added.progress {
+    height: 1e m;margin - top: 8 px
+}.services - status.value - added.row - fluid.search > div: first - child {
+    padding - left: 10 px
+}.services - status.value - added.row - fluid.search strong {
+    display: block;font - size: 1.3e m;font - weight: 700;color: #1694f3;line-height:20px}.services-status .value-added .row-fluid.search span{margin-top:6px;color:gray}.services-status .value-added .row-fluid.search em{color:gray;word-spacing:.2em;text-align:right}.account-detail,.disk-detail.modal{min-width:450px;width:450px}.account-detail .modal-body .item-list,.disk-detail.modal .modal-body .item-list{padding:5px 50px}.account-detail .modal-body .item-list>li,.disk-detail.modal .modal-body .item-list>li{padding:5px}.account-detail .modal-body .divider,.disk-detail.modal .modal-body .divider{border-bottom:1px solid # ddd
+}.domain - setting.control - group, .mail - setting.control - group, .ent - info.control - group {
+    width: 670 px;margin: 5 px 0 10 px
+}.domain - setting.control - group.item - title, .mail - setting.control - group.item - title, .ent - info.control - group.item - title {
+    font - size: 15 px;
+    line - height: 30 px;
+    font - weight: 700;
+    color: #626a8a}.domain-setting .control-group .logo-area,.mail-setting .control-group .logo-area,.ent-info .control-group .logo-area{border:1px solid # d4d9da
+}.domain - setting.control - group.logo - area.logo - container, .mail - setting.control - group.logo - area.logo - container, .ent - info.control - group.logo - area.logo - container {
+    background - color: #92929e;text-align:center}.domain-setting .control-group .logo-area .logo-container .logo-bg,.mail-setting .control-group .logo-area .logo-container .logo-bg,.ent-info .control-group .logo-area .logo-container .logo-bg{width:185px;height:43px}.domain-setting .control-group .logo-area .logo-container .change-btn,.mail-setting .control-group .logo-area .logo-container .change-btn,.ent-info .control-group .logo-area .logo-container .change-btn{color:# 1694 f3;
+    background - color: #e3ebeb;
+    position: relative
+}.domain - setting.control - group.logo - area.logo - container.change - btn.webuploader - pick, .mail - setting.control - group.logo - area.logo - container.change - btn.webuploader - pick, .ent - info.control - group.logo - area.logo - container.change - btn.webuploader - pick {
+    background: #3aaa34}.domain-setting .control-group .logo-area .logo-container .change-btn .webuploader-pick-hover,.mail-setting .control-group .logo-area .logo-container .change-btn .webuploader-pick-hover,.ent-info .control-group .logo-area .logo-container .change-btn .webuploader-pick-hover{background:# 3 aaa8f
+}.domain - setting.control - group.logo - area.tips, .mail - setting.control - group.logo - area.tips, .ent - info.control - group.logo - area.tips {
+    color: #a0a5be;font - size: 14 px
+}.domain - setting.control - group.logo - area.tips.tip - title, .mail - setting.control - group.logo - area.tips.tip - title, .ent - info.control - group.logo - area.tips.tip - title {
+    font - weight: 700
+}.domain - setting.control - group.logo - area.tips.tip - list, .mail - setting.control - group.logo - area.tips.tip - list, .ent - info.control - group.logo - area.tips.tip - list {
+    list - style: disc;
+    line - height: 25 px;
+    list - style: inside decimal
+}.domain - setting.control - group.logo - area.webuploader - pick, .mail - setting.control - group.logo - area.webuploader - pick, .ent - info.control - group.logo - area.webuploader - pick {
+    padding: 2 px 5 px;text - align: left;line - height: 2.2e m;margin - top: 2 px
+}.domain - setting.control - group.controls input, .mail - setting.control - group.controls input, .ent - info.control - group.controls input {
+    width: 650 px;border: 1 px solid# d4d9da;border - radius: 0;box - shadow: none;margin: 0
+}.domain - setting.control - group.controls input: focus, .mail - setting.control - group.controls input: focus, .ent - info.control - group.controls input: focus {
+    border - color: #1894f3}.domain-setting .control-group>button,.mail-setting .control-group>button,.ent-info .control-group>button{width:150px}.domain-setting .row-content .title{border-bottom:1px solid # d4d9da;
+    color: #333;font-weight:700;font-size:14px;margin-top:15px;margin-bottom:10px}.domain-setting .row-content .control-group{margin-left:20px;color:# 636890
+}.domain - setting.row - content.control - group.control - label {
+    font - weight: 700
+}.user - mgr.row - content {
+    height: 100 %
+}.user - mgr.row - content.sec - header {
+    border - bottom: 1 px solid# ddd;
+    margin - bottom: 5 px
+}.user - mgr.row - content.sec - header.operations.btn.btn - link {
+    border - right: 1 px solid# DDD
+}.user - mgr.row - content.list - item > li {
+    margin: 0;display: inline - block
+}.user - mgr.row - content.list - header {
+    border - left: 0;
+    border - right: 1 px solid# ddd;
+    height: 30 px
+}.user - mgr.row - content.list - body {
+    border - left: 0
+}.user - mgr.row - content.list - body.list - item {
+    height: 50 px
+}.user - mgr.row - content.list - body.list - item: hover {
+    background - color: #ebf2f5
+}.user - mgr.row - content.list - body.list - item > li {
+    height: 50 px;line - height: 50 px
+}.user - mgr.row - content.list - body.list - item > li.checkbox - sprite {
+    vertical - align: middle
+}.user - mgr.row - content.list - body.list - item > li.user - main {
+    height: auto;cursor: pointer
+}.user - mgr.row - content.list - body.list - item > li strong {
+    margin - top: 5 px;
+    line - height: 20 px;
+    display: block
+}.user - mgr.row - content.list - body.list - item > li strong.btn - link {
+    padding: 0 5 px
+}.user - mgr.row - content.list - body.list - item > li.dept {
+    line - height: 20 px
+}.user - mgr.row - content.list - body.list - item > li.img - cell {
+    max - width: 40 px;
+    min - width: 40 px;
+    height: 50 px;
+    line - height: 50 px
+}.user - mgr.row - content.list - body.list - item > li.two - rows - cell {
+    margin - left: 0
+}.user - mgr.user - left {
+    border - right: 1 px solid# ddd
+}.user - mgr.user - left.ent - name {
+    font - size: 15 px;
+    line - height: 2e m;
+    margin - left: 10 px
+}.user - mgr.user - left.ztree.depart - edit - ztree li a {
+    height: 20 px;line - height: 20 px;display: inline - block;text - decoration: none
+}.user - mgr.user - left.ztree.depart - edit - ztree li a.curSelectedNode {
+    background - color: #2978ca;border:0;opacity:1;padding-top:0}.user-mgr .user-left .ztree.depart-edit-ztree li a.curSelectedNode span{color:# FFF
+}.user - mgr.user - left.ztree.depart - edit - ztree li a.department > span {
+    font - size: 12 px;
+    font - weight: 700;
+    color: #518cb6}.user-mgr .user-left .ztree.depart-edit-ztree li>span.button{margin:0 5px}.user-mgr .user-left .ztree.depart-edit-ztree li .btn-group .dropdown-menu a{color:# 08 c
+}.user - mgr.user - left.ztree.depart - edit - ztree li.btn - group.dropdown - menu a: hover {
+    color: #fff
+}.user - mgr.user - left.ztree.depart - edit - ztree.ico_close, .user - mgr.user - left.ztree.depart - edit - ztree.ico_open {
+    display: none!important
+}.user - mgr.user - left.ztree.depart - edit - ztree a.curSelectedNode.dept - setting - btn {
+    display: inline - block
+}.user - mgr.user - left.ztree.depart - edit - ztree a.dept - setting - btn {
+    display: none;height: 16 px;margin - left: 20 px;margin - right: 10 px
+}.user - mgr.user - left.ztree.depart - edit - ztree a.dept - setting - btn span.dropdown - toggle {
+    display: inline - block;width: 16 px;height: 16 px;background: url(/wt/assets / img / common / icons.png) - 110 px - 196 px no - repeat
+}.user - mgr.user - left.ztree.depart - edit - ztree a.dept - setting - btn.dropdown - menu {
+    min - width: 80 px
+}.user - mgr.user - table {
+    margin - left: 0
+}.user - mgr.user - table.operation {
+    border - bottom: 1 px solid# ddd
+}.user - mgr.user - table.btn - tips {
+    color: red;text - decoration: none;cursor: default
+}.user - mgr.modal.create - dept.modal - body {
+    height: 180 px;padding: 20 px
+}.user - mgr.modal.edit - dept.fade.in {
+    top: 10 %
+}.user - mgr.modal.edit - dept.modal - body {
+    height: 280 px
+}.user - mgr.modal.edit - dept.modal - body.permission - block {
+    padding: 0 20 px;background - color: #fafdfd;border: 1 px solid# ddd;line - height: 2.4e m;margin - bottom: 10 px
+}.user - mgr.modal.edit - dept.modal - body.permission - block.permission - list {
+    border - top: 1 px solid# ddd
+}.user - mgr.modal.edit - dept.modal - body.permission - block.permission - list > li {
+    min - width: 110 px
+}.user - mgr.modal.create - user.modal - body {
+    padding: 10 px 20 px;height: 200 px
+}.user - mgr.modal.create - user.modal - body.valid - users {
+    margin - bottom: 20 px
+}.user - mgr.modal.edit - user.modal - body {
+    min - height: 320 px
+}.user - mgr.modal.edit - user.modal - body ul.nav - tabs > li {
+    min - width: 33 % ;
+    text - align: center
+}.user - mgr.modal.edit - user.modal - body ul.nav - tabs > li.active a {
+    background - color: #08c;color:# fff
+}.user - mgr.modal.edit - user.modal - body.tab - pane {
+    margin - left: 30 px
+}.user - mgr.modal.edit - user.modal - body form.login - info.control - group.first {
+    border - bottom: 1 px solid# DDD;
+    padding - bottom: 20 px
+}.user - mgr.modal.set - persondisk.modal - body {
+    min - height: 150 px
+}.user - mgr.modal.set - persondisk.modal - body.input - form {
+    height: 40 px;border - top: 1 px solid# c5cdd2;margin - top: 10 px;padding: 20 px 0
+}.user - mgr.modal.set - persondisk.modal - body.operate - objects {
+    max - height: 90 px;
+    overflow - y: auto
+}.user - mgr.modal.set - persondisk.modal - body.operate - objects > span.label {
+    margin - right: 5 px;
+    font - size: 13 px
+}.user - mgr.modal.change - dept.modal - body {
+    min - height: 360 px;
+    padding: 0;
+    overflow: hidden
+}.user - mgr.modal.change - dept.modal - body.row - fluid.first {
+    background - color: #FCFCFC;
+    border - bottom: 1 px solid# DDD;
+    min - height: 50 px;
+    padding - top: 5 px
+}.user - mgr.modal.change - dept.modal - body.dept - tree {
+    height: 360 px;overflow: auto
+}.user - mgr.modal.import-user.fade.in {
+    top: 10 %
+}.user - mgr.modal.import-user.modal - body {
+    min - height: 250 px
+}.user - mgr.modal.import-user.modal - body ul.intros {
+    list - style - type: decimal;
+    padding - left: 20 px
+}.user - mgr.modal.import-user.modal - body ul.intros > li {
+    padding - top: .4e m
+}.user - mgr.modal.import-user.modal - footer.btn - blue {
+    padding: 5 px 0 0 15 px
+}.user - mgr.modal.import-user.modal - footer.web - uploader {
+    padding: 0;margin: 0;border: 0
+}.user - mgr.modal.import-user.modal - footer.web - uploader.webuploader - container {
+    height: 33 px
+}.user - mgr.modal.import-user.modal - footer.web - uploader.webuploader - pick {
+    font - size: 12 px;
+    line - height: 2e m;
+    background: #3aaa34}.user-mgr .modal.import-user .modal-footer .web-uploader .webuploader-pick-hover{background:# 3 aaa8f
+}.user - mgr.modal.user - permission {
+    max - height: 523 px;
+    min - width: 600 px
+}.user - mgr.modal.user - permission.modal - body {
+    overflow: hidden;padding: 0;height: 425 px
+}.user - mgr.modal.user - permission.modal - body.user - permission - detail {
+    padding: 10 px
+}.user - mgr.modal.user - permission.modal - body.user - permission - detail.current - account {
+    height: 40 px
+}.user - mgr.modal.user - permission.modal - body.user - permission - detail.list - container ul.list - header > li {
+    line - height: 30 px
+}.user - mgr.modal.user - permission.modal - body.user - permission - detail.list - container.list - body {
+    overflow: auto;height: 320 px
+}.user - mgr.modal.active - account ul > li {
+    margin - top: 10 px
+}.user - mgr.modal.sort - dept.table - bordered td: hover {
+    background - color: #999}.user-mgr .modal.sort-dept i{font-size:1.6em}.role-mgr .create-role.modal,.role-mgr .edit-role.modal{min-width:650px;width:650px}.role-mgr .create-role.modal.fade.in,.role-mgr .edit-role.modal.fade.in{top:5%}.role-mgr .create-role.modal .modal-body,.role-mgr .edit-role.modal .modal-body{min-height:250px;max-height:450px;padding:1px;overflow:hidden}.role-mgr .create-role.modal .modal-body ul.role-nav,.role-mgr .edit-role.modal .modal-body ul.role-nav{cursor:pointer;border-bottom:2px solid # EEE5E5;
+    background - color: #ebf2f5;
+    line - height: 30 px
+}.role - mgr.create - role.modal.modal - body ul.role - nav > li, .role - mgr.edit - role.modal.modal - body ul.role - nav > li {
+    display: inline - block
+}.role - mgr.create - role.modal.modal - body ul.role - nav > li > span, .role - mgr.edit - role.modal.modal - body ul.role - nav > li > span {
+    padding: 10 px;text - align: center;font - weight: 700
+}.role - mgr.create - role.modal.modal - body ul.role - nav > li > span.active, .role - mgr.edit - role.modal.modal - body ul.role - nav > li > span.active {
+    color: #08C}.role-mgr .create-role.modal .modal-body .role-name,.role-mgr .edit-role.modal .modal-body .role-name{font-size:15px;background-color:# F2F4F5;padding: 8 px;border - bottom: 2 px solid# eee5e5
+}.role - mgr.create - role.modal.modal - body.role - name > span > strong, .role - mgr.edit - role.modal.modal - body.role - name > span > strong {
+    margin - left: 10 px
+}.role - mgr.create - role.modal.modal - body.role - header, .role - mgr.edit - role.modal.modal - body.role - header {
+    height: 45 px;font - size: 17 px;background - color: #F3F8F9;border - bottom: 1 px solid# DDD;line - height: 2.4e m
+}.role - mgr.create - role.modal.modal - body.role - header label, .role - mgr.edit - role.modal.modal - body.role - header label {
+    font - size: 16 px;
+    padding - left: 20 px;
+    display: inline - block
+}.role - mgr.create - role.modal.modal - body.sec - row - content, .role - mgr.edit - role.modal.modal - body.sec - row - content {
+    height: 370 px;overflow - y: auto;overflow - x: hidden
+}.role - mgr.create - role.modal.modal - body.add - role, .role - mgr.edit - role.modal.modal - body.add - role {
+    padding: 20 px
+}.role - mgr.create - role.modal.modal - body.add - role.role - border, .role - mgr.edit - role.modal.modal - body.add - role.role - border {
+    margin - top: 120 px;
+    border: 1 px solid# EEE5E5
+}.role - mgr.create - role.modal.modal - body.add - role ul.role - tips, .role - mgr.edit - role.modal.modal - body.add - role ul.role - tips {
+    font - size: 13 px;
+    margin - top: 15 px
+}.role - mgr.create - role.modal.modal - body.add - role ul.role - tips.tips, .role - mgr.edit - role.modal.modal - body.add - role ul.role - tips.tips {
+    font - weight: 700
+}.role - mgr.create - role.modal.modal - body.add - role.alert - danger, .role - mgr.edit - role.modal.modal - body.add - role.alert - danger {
+    padding: 3 px 10 px 2 px
+}.role - mgr.create - role.modal.modal - body.select - users.dept - user - selector.dept - user - tree, .role - mgr.edit - role.modal.modal - body.select - users.dept - user - selector.dept - user - tree {
+    height: 100 % ;border - right: 1 px solid# ddd
+}.role - mgr.create - role.modal.modal - body.select - users.dept - user - selector.dept - user - tree.row - fluid.first, .role - mgr.edit - role.modal.modal - body.select - users.dept - user - selector.dept - user - tree.row - fluid.first {
+    border - bottom: 1 px solid# ddd;
+    padding - top: 10 px;
+    padding - bottom: 0
+}.role - mgr.create - role.modal.modal - body.role - detail, .role - mgr.edit - role.modal.modal - body.role - detail {
+    margin: 0 20 px
+}.role - mgr.create - role.modal.modal - body.role - detail.role - header - special, .role - mgr.edit - role.modal.modal - body.role - detail.role - header - special {
+    margin: 10 px 0 0
+}.role - mgr.create - role.modal.modal - body.role - detail.list - container.row - header, .role - mgr.edit - role.modal.modal - body.role - detail.list - container.row - header {
+    border: 1 px solid# ddd;border - bottom: 0;height: 30 px;line - height: 2e m;text - indent: 1e m;font - weight: inherit
+}.role - mgr.create - role.modal.modal - body.role - detail.list - container ul.list - items, .role - mgr.edit - role.modal.modal - body.role - detail.list - container ul.list - items {
+    border: 1 px solid# ddd;height: 110 px;padding - bottom: 5 px;overflow - y: auto;overflow - x: hidden
+}.role - mgr.create - role.modal.modal - body.role - detail.list - container ul.list - items > li, .role - mgr.edit - role.modal.modal - body.role - detail.list - container ul.list - items > li {
+    height: 40 px;line - height: 1.3e m;padding - left: 10 px;border - bottom: 1 px solid# ddd;overflow: visible
+}.role - mgr.create - role.modal.modal - body.role - detail.list - container ul.list - items > li.folder - path, .role - mgr.edit - role.modal.modal - body.role - detail.list - container ul.list - items > li.folder - path {
+    color: gray
+}.role - mgr.create - role.modal.modal - body.role - detail.list - container ul.list - items > li ul.dropdown - menu, .role - mgr.edit - role.modal.modal - body.role - detail.list - container ul.list - items > li ul.dropdown - menu {
+    min - width: 100 px
+}.role - mgr.create - role.modal.modal - body.role - detail.list - container ul.list - items > li ul.dropdown - menu > li, .role - mgr.edit - role.modal.modal - body.role - detail.list - container ul.list - items > li ul.dropdown - menu > li {
+    padding - left: 15 px;
+    padding - bottom: 3 px;
+    cursor: pointer;
+    line - height: 1.4e m
+}.role - mgr.create - role.modal.modal - body.role - detail.list - container ul.list - items > li ul.dropdown - menu > li: hover, .role - mgr.edit - role.modal.modal - body.role - detail.list - container ul.list - items > li ul.dropdown - menu > li: hover {
+    background - color: #08c;color:# fff
+}.role - mgr.create - role.modal.modal - body.role - detail.list - container ul.list - items > li.user - item, .role - mgr.edit - role.modal.modal - body.role - detail.list - container ul.list - items > li.user - item {
+    overflow: hidden
+}.role - mgr.edit - role.modal.modal - body.sec - row - content {
+    height: 404 px;overflow - y: auto;overflow - x: hidden
+}.role - mgr.edit - role.modal.modal - body.role - detail.folder - container.list - items {
+    height: 135 px!important
+}.role - mgr.rename - role.modal.modal - body {
+    padding: 10 px
+}.role - mgr.rename - role.modal.rename - rolename {
+    font - size: 16 px;
+    font - weight: 700
+}.role - mgr.rename - role.modal.rename - text {
+    width: 490 px
+}.role - mgr.set - permission.modal {
+    min - width: 600 px
+}.role - mgr.set - permission.modal.modal - body {
+    min - height: 360 px;
+    overflow: hidden
+}.role - mgr.set - permission.modal.row - content.table - title {
+    padding: 1 px;text - align: center;font - weight: 700;margin - top: 6 px
+}.role - mgr.set - permission.modal.row - content ul.left - content {
+    border - right: 1 px solid# ddd
+}.role - mgr.set - permission.modal.row - content ul.right - content {
+    margin - left: 10 px
+}.role - mgr > .span6 {
+    box - sizing: border - box
+}.role - mgr.role - mgr - left {
+    border - right: 1 px solid# d4d9da;
+    overflow: auto
+}.role - mgr.role - header {
+    height: 40 px;line - height: 2.4e m;color: #333;font-size:16px;border-bottom:1px solid # d4d9da;font - weight: 700;padding: 0 10 px
+}.role - mgr.role - header.search - box {
+    margin - bottom: 0;
+    line - height: 1e m
+}.role - mgr.new - disk - role {
+    line - height: 34 px;
+    font - size: 16 px;
+    padding: 0 10 px;
+    border - bottom: 1 px solid# d4d9da
+}.role - mgr.dropdown - menu {
+    border - radius: 0;
+    box - shadow: none;
+    border: 1 px solid #1984f3;color:# 1894 f3;
+    min - width: 100 px;
+    border - radius: 1 px
+}.role - mgr.dropdown - menu > li > a {
+    color: #1984f3}.role-mgr .dropdown-menu>li>a:hover{color:# fff
+}.role - mgr.role - list - merge {
+    overflow: auto
+}.role - mgr.role - list {
+    padding - left: 10 px;
+    margin - bottom: 5 px
+}.role - mgr.role - list.title {
+    color: #636890;font-size:16px;font-weight:700}.role-mgr .role-list .title.open i.icon-custom-toggle{background-position:-252px -281px}.role-mgr .role-list .list-item{color:# 636890;cursor: pointer;font - size: 14 px;display: inline - block;overflow: visible;margin: 2 px 0
+}.role - mgr.role - list.list - item: hover, .role - mgr.role - list.list - item.active {
+    background - color: #1894f3;color:# fff
+}.role - mgr.role - list.list - item: hover i.icon - custom - domain - group, .role - mgr.role - list.list - item.active i.icon - custom - domain - group {
+    background - position: -772 px - 366 px
+}.role - mgr.role - list.list - item: hover i.icon - custom - user - manage, .role - mgr.role - list.list - item.active i.icon - custom - user - manage {
+    background - position: -406 px - 453 px
+}.role - mgr.role - list.list - item.operates {
+    overflow: visible
+}.role - mgr.member - list {
+    overflow: auto
+}.role - mgr.member - list.list - item {
+    margin - left: 20 px
+}.role - mgr.member - list.list - item.group {
+    cursor: pointer
+}.role - mgr.member - list.list - item li {
+    padding: 0 5 px;line - height: 30 px;height: 30 px
+}.role - mgr.member - list.list - item li.icon {
+    padding: 0 0 10 px
+}.sync - mgr.create - syncfolder.modal, .sync - mgr.see - sync - detail.modal {
+    min - width: 600 px
+}.sync - mgr.create - syncfolder.modal.modal - body, .sync - mgr.see - sync - detail.modal.modal - body {
+    padding: 0;height: 450 px;overflow: hidden
+}.sync - mgr.create - syncfolder.modal.modal - body.active, .sync - mgr.see - sync - detail.modal.modal - body.active {
+    color: #00A3EF}.sync-mgr .create-syncfolder.modal .modal-body ul.sync-nav,.sync-mgr .see-sync-detail.modal .modal-body ul.sync-nav{cursor:pointer;border-bottom:2px solid # EEE5E5;background - color: #ebf2f5;line - height: 30 px
+}.sync - mgr.create - syncfolder.modal.modal - body ul.sync - nav > li, .sync - mgr.see - sync - detail.modal.modal - body ul.sync - nav > li {
+    display: inline - block
+}.sync - mgr.create - syncfolder.modal.modal - body ul.sync - nav > li > span, .sync - mgr.see - sync - detail.modal.modal - body ul.sync - nav > li > span {
+    padding: 10 px;text - align: center;font - weight: 700
+}.sync - mgr.create - syncfolder.modal.modal - body ul.sync - nav > li > span.active, .sync - mgr.see - sync - detail.modal.modal - body ul.sync - nav > li > span.active {
+    color: #08C}.sync-mgr .create-syncfolder.modal .modal-body .sync-detail,.sync-mgr .see-sync-detail.modal .modal-body .sync-detail{padding:10px}.sync-mgr .create-syncfolder.modal .modal-body .sync-detail .folder-Info,.sync-mgr .see-sync-detail.modal .modal-body .sync-detail .folder-Info{border:1px solid # ddd;height: 55 px
+}.sync - mgr.create - syncfolder.modal.modal - body.sync - detail.user - content, .sync - mgr.see - sync - detail.modal.modal - body.sync - detail.user - content {
+    overflow - y: auto;
+    border: 1 px solid# ddd;
+    height: 220 px
+}.sync - mgr.create - syncfolder.modal.modal - body.sync - detail.user - content > ul, .sync - mgr.see - sync - detail.modal.modal - body.sync - detail.user - content > ul {
+    border - bottom: 1 px solid# ddd;
+    height: 50 px
+}.sync - mgr.create - syncfolder.modal.modal - body.sync - detail.user - content: hover, .sync - mgr.see - sync - detail.modal.modal - body.sync - detail.user - content: hover {
+    background - color: #f4fbfe
+}.sync - mgr.create - syncfolder.modal.modal - body.select - users.dept - tree, .sync - mgr.see - sync - detail.modal.modal - body.select - users.dept - tree {
+    height: 340 px;overflow: auto
+}.sync - mgr.create - syncfolder.modal.modal - body.select - users.select - users, .sync - mgr.see - sync - detail.modal.modal - body.select - users.select - users {
+    height: 320 px;overflow: auto
+}.sync - mgr.create - syncfolder.modal.modal - body.select - folder.ent - folder - selector, .sync - mgr.see - sync - detail.modal.modal - body.select - folder.ent - folder - selector {
+    height: 390 px;overflow: auto
+}.version - mgr.row - content {
+    font - size: 14 px;
+    border: 1 px solid# ddd;
+    border - top: 0
+}.version - mgr.row - content.version - left {
+    border - right: 1 px solid# ddd
+}.version - mgr.row - content.txt - check {
+    padding: 15 px 0 0 30 px
+}.version - mgr.row - content.txt - check.text - size {
+    width: 40 px;border - radius: 0
+}.version - mgr.row - content.version - right {
+    color: gray;padding: 30 px 6 px
+}.version - mgr.row - content.version - right.tip - list {
+    list - style - type: decimal;
+    padding - left: 30 px
+}.version - mgr.row - content.version - right.tip - list > li {
+    padding: 5 px 0 0
+}.version - mgr.row - footer {
+    margin - top: 20 px
+}.recycle - mgr.list - caption {
+    margin: 3 px 0
+}.recycle - mgr.form - search.input - append input {
+    width: 170 px
+}.recycle - mgr.form - search.input - append.go - back {
+    cursor: pointer;color: #08c;margin-right:-2px;width:35px;background-color:# fff
+}.recycle - mgr.form - search.input - append.search - on {
+    margin - right: 1 px;
+    background - color: #fff
+}.recycle - mgr.navtabs > li {
+    width: 50 % ;text - align: center
+}.recycle - mgr.navtabs > li.active > a {
+    color: #1493f4}.operate-log .header-tips{font-size:13px;margin-right:10px;color:gray;float:right}.operate-log .export-log{float:right;margin-right:15px;margin-top:5px}.operate-log .row-content .tag-numbers{height:50px;font-size:15px;margin-top:10px}.operate-log .row-content .log-search .popover{max-width:300px}.operate-log .row-content .log-search form{height:200px;background:# ebf2f5;border: 1 px solid# DDD
+}.operate - log.row - content.log - search form > .control - group: first - child {
+    line - height: 2.6e m
+}.operate - log.row - content.log - search form > .control - group: first - child > .control - label {
+    line - height: 2.2e m
+}.operate - log.row - content.log - search form.control - group.control - label {
+    font - weight: 700;
+    text - align: right
+}.operate - log.row - content.log - search form ul.operate - types > li {
+    border - right: 1 px solid# CCC;
+    padding: 2 px 8 px;
+    line - height: 12 px
+}.operate - log.row - content.form - search.input - append input {
+    width: 170 px
+}.operate - log.row - content.form - search.input - append.go - back {
+    cursor: pointer;color: #08c;margin-right:-2px;width:35px;background-color:# fff
+}.operate - log.row - content.form - search.input - append.search - on {
+    margin - right: 1 px;
+    background - color: #fff
+}.operate - log.select - user.modal.modal - body {
+    height: 360 px;padding: 20 px
+}.operate - log.export-operate - log.modal.status - info {
+    color: #E00;font - weight: 700;text - align: left;font - size: 1.1e m
+}.chat - log.add - on {
+    background - color: #fff;
+    cursor: pointer
+}.chat - log.row - content.chat - content.chat - header {
+    font - size: 16 px;
+    padding: 7 px 0;
+    border - bottom: 1 px solid# ddd
+}.chat - log.row - content.chat - content.chat - header > span {
+    margin - left: 8 px
+}.chat - log.row - content.chat - content.chat - header > i {
+    cursor: pointer;margin: 4 px 7 px
+}.chat - log.row - content.chat - content.chat - header.select - time {
+    height: 24 px
+}.chat - log.row - content.chat - content.chat - header.select - time.input - small {
+    width: 75 px
+}.chat - log.row - content.chat - content.search - box {
+    padding: 5 px 0 0 1 px
+}.chat - log.row - content.chat - content.search - box.keyword {
+    max - width: 130 px
+}.chat - log.row - content.user - list {
+    float: left;width: 200 px;overflow: hidden;border - right: 1 px solid# ddd
+}.chat - log.row - content.user - list.user - items {
+    overflow: auto
+}.chat - log.row - content.user - list.search - users {
+    overflow: auto
+}.chat - log.row - content.user - list.search - users.search - user - item {
+    cursor: pointer
+}.chat - log.row - content.user - list.search - users.search - user - item: hover, .chat - log.row - content.user - list.search - users.search - user - item.active {
+    background - color: #1694f3;color:# fff
+}.chat - log.row - content.chat - object {
+    float: left;width: 200 px;overflow: auto;border - right: 1 px solid# ddd
+}.chat - log.row - content.chat - object.chat - object - body.chat - user - item {
+    cursor: pointer
+}.chat - log.row - content.chat - object.chat - object - body.chat - user - item: hover, .chat - log.row - content.chat - object.chat - object - body.chat - user - item.active {
+    background - color: #1694f3;color:# fff
+}.chat - log.row - content.chat - info {
+    margin - left: 400 px
+}.chat - log.row - content.chat - info.time - header {
+    font - size: 15 px;
+    font - weight: 700;
+    text - align: center;
+    margin: 10 px 0
+}.chat - log.row - content.chat - info.chat - list - body {
+    padding: 0 2 px;overflow: auto
+}.chat - log.row - content.chat - info.chat - list - body > ul {
+    padding: 5 px
+}.chat - log.row - content.chat - info.chat - list - body > ul.sender - name, .chat - log.row - content.chat - info.chat - list - body > ul.receiver - name {
+    font - size: 14 px;
+    font - weight: 700;
+    word - spacing: 3e m
+}.chat - log.row - content.chat - info.chat - list - body > ul.sender - name {
+    color: #228b22}.chat-log .row-content .chat-info .chat-list-body>ul .receiver-name{color:# 0000 d0
+}.chat - log.row - content.chat - info.chat - list - body > ul.send - body {
+    word -
+        break: break -all;
+    font - size: 13 px;
+    color: #757474;margin-top:5px}.chat-log .row-content .chat-search .search-header{margin-top:5px;font-size:15px}.chat-log .row-content .chat-search .search-list{overflow:auto}.chat-log .row-content .chat-search .search-list .chat-list-item{border:1px solid # ddd;
+    padding: 8 px 10 px 5 px;
+    margin - top: 10 px;
+    border - radius: 10 px;
+    background - color: #FBFBFB
+}.chat - log.row - content.chat - search.search - list.chat - list - item ul.row - fluid {
+    border - bottom: 1 px solid# ddd;
+    padding - bottom: 5 px
+}.chat - log.row - content.chat - search.search - list.chat - list - item.msg - body {
+    font - size: 13 px;
+    padding - top: 5 px;
+    margin: 5 px 0;
+    color: #757474}.chat-log .row-content .chat-search .search-list .chat-list-item:hover{border:1px solid # 1694 f3;
+    background - color: #fff
+}.chat - log.row - content.chat - search.img - circle {
+    width: 32 px;height: 32 px
+}

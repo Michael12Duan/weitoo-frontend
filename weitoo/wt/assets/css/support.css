@@ -1,0 +1,349 @@
+.bg - img - file - left - bottom {
+    background - color: #147ec3;background-image:-moz-linear-gradient(to bottom,# 1888 cf, #0e74bf);background-image:-webkit-linear-gradient(to bottom,# 1888 cf, #0e74bf);background-image:-o-linear-gradient(to bottom,# 1888 cf, #0e74bf);background-image:-ms-linear-gradient(to bottom,# 1888 cf, #0e74bf);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr= '#1888cf', endColorstr = '#0e74bf'); - ms - filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#1888cf', endColorstr='#0e74bf')";
+background - image: linear - gradient(to bottom, #1888cf,# 0e74 bf)
+}.clearfix { * zoom: 1
+}.clearfix: before, .clearfix: after {
+    display: table;content: "";line - height: 0
+}.clearfix: after {
+    clear: both
+}.hide - text {
+    font: 0 / 0 a;color: transparent;text - shadow: none;background - color: transparent;border: 0
+}.input - block - level {
+    display: block;width: 100 % ;min - height: 30 px; - webkit - box - sizing: border - box; - moz - box - sizing: border - box;box - sizing: border - box
+}.ztree.qyc - tree.ico_close, .ztree.qyc - tree.ico_open {
+    display: none!important
+}.ztree.qyc - tree ul[class ^= level] {
+    margin - left: 10 px
+}.ztree.qyc - tree li {
+    white - space: nowrap
+}.ztree.qyc - tree li a {
+    height: 20 px;line - height: 1.5e m;display: inline - block;text - decoration: none;font - size: 13 px
+}.ztree.qyc - tree li a > span {
+    font - size: 13 px
+}.ztree.qyc - tree li a: hover {
+    text - decoration: none
+}.ztree.qyc - tree li a.curSelectedNode {
+    background - color: #2978ca;border:0;opacity:1;padding-top:0;height:20px!important}.ztree.qyc-tree li a.curSelectedNode span{color:# FFF
+}.ztree.qyc - tree li span.button {
+    height: 13 px;width: 13 px;display: inline - block;background - image: url(/wt/assets / img / common / icons.png)
+}.ztree.qyc - tree li span.button.switch {
+    padding - top: 2 px
+}.ztree.qyc - tree li span.button.noline_docu {
+    display: none
+}.ztree.qyc - tree li span.button.noline_close {
+    background - position: -296 px 0
+}.ztree.qyc - tree li span.button.noline_open, .ztree.qyc - tree li span.button.center_open {
+    background - position: -309 px - 41 px;
+    height: 13 px;
+    width: 13 px
+}.ztree.qyc - tree li span.button.noline_close, .ztree.qyc - tree li span.button.center_close {
+    background - position: -309 px - 55 px;
+    height: 13 px;
+    width: 13 px;
+    margin - top: 0
+}.ztree.qyc - tree li span.button.folder_ico_open {
+    background - position: -266 px - 55 px
+}.ztree.qyc - tree li span.button.folder_ico_close, .ztree.qyc - tree li span.button.folder_ico_docu {
+    background - position: -266 px - 41 px
+}.ztree.qyc - tree li span.button.folder_ico_docu {
+    margin - left: 0
+}.ztree.qyc - tree li.curSelectedNode span {
+    color: #427ca2}.ztree.qyc-tree li .curSelectedNode span.button.folder_ico_docu{background-position:-238px -41px}.ztree.qyc-tree li .curSelectedNode span.button.folder_ico_open{background-position:-238px -55px}.ztree.qyc-tree li .curSelectedNode span.button.folder_ico_close{background-position:-238px -41px}.qyc-tree.folder-tree li a{height:20px;line-height:1em;padding:0}.qyc-tree.folder-tree li span.button{margin:0 2px 2px}.qyc-tree.folder-tree li span.button.chk{width:17px;height:17px;cursor:pointer}.qyc-tree.folder-tree li span.button.chk.checkbox_false_part,.qyc-tree.folder-tree li span.button.chk.checkbox_false_part_focus,.qyc-tree.folder-tree li span.button.chk.checkbox_false_full,.qyc-tree.folder-tree li span.button.chk.checkbox_false_full_focus{background:url(/wt/assets/img/common/icons.png) -574px -40px no-repeat}.qyc-tree.folder-tree li span.button.chk.checkbox_true_full,.qyc-tree.folder-tree li span.button.chk.checkbox_true_full_focus,.qyc-tree.folder-tree li span.button.chk.checkbox_true_part,.qyc-tree.folder-tree li span.button.chk.checkbox_true_part_focus{background:url(/wt/assets/img/common/icons.png) -593px -42px no-repeat}.qyc-tree.folder-tree.p-s-no-related li span.button.chk.checkbox_true_part,.qyc-tree.folder-tree.p-s-no-related li span.button.chk.checkbox_true_part_focus{background-position:-365px -14px}.qyc-tree.dept-tree{overflow:auto;overflow-x:hidden}.qyc-tree.dept-tree li a.department>span{font-size:12px;font-weight:700;color:# 518 cb6
+}.qyc - tree.dept - tree li a.curSelectedNode.dept - setting - btn {
+    display: inline - block
+}.qyc - tree.dept - tree li span.user_avatar_ico_docu {
+    width: 18 px;background - image: none
+}.qyc - tree.folder - tree li span# entFolderTree_1_ico {
+    background - position: -252 px - 41 px
+}.qyc - tree.folder - tree li span# personFolderTree_1_ico {
+    background - position: -378 px - 195 px
+}.qyc - tree.folder - tree li.curSelectedNode span# entFolderTree_1_ico {
+    background - position: -224 px - 41 px
+}.qyc - tree.folder - tree li.curSelectedNode span# personFolderTree_1_ico {
+    background - position: -378 px - 209 px
+}.ztree.dept - user - tree.row - fluid.first {
+    border - bottom: 1 px solid# ddd;
+    padding - bottom: 10 px
+}.ztree.dept - user - tree.search - item {
+    cursor: pointer
+}.ztree.dept - user - tree.search - item: hover, .ztree.dept - user - tree.search - item.active {
+    background - color: #1694f3;color:# fff
+}.modal - backdrop {
+    background - color: #EEE
+}.modal - backdrop, .modal - backdrop.fade.in {
+    opacity: .4
+}.qyc - tree.dept - tree li span.user_avatar_ico_docu {
+    width: 18 px;background - image: none;background - color: #fff
+}.modal {
+    min - width: 560 px;
+    border - radius: 0;
+    background - color: transparent
+}.modal.fade {
+    z - index: -1
+}.modal.fade.in {
+    top: 10 % ;z - index: 1041
+}.modal.modal - header {
+    border - radius: 0;
+    padding: 0 5 px 0 10 px;
+    height: 45 px;
+    background - image: none;
+    border - bottom: 0;
+    color: #fff;
+    background - color: #1694f3}.modal .modal-header .close{margin-top:0;color:# fff;
+    opacity: 1;
+    position: absolute;
+    right: 0;
+    top: 11 px;
+    font - size: 24 px;
+    width: 35 px;
+    font - weight: 400
+}.modal.modal - header h3 {
+    line - height: 45 px;
+    color: #fff;
+    height: 45 px;
+    overflow: hidden;
+    text - overflow: ellipsis;
+    white - space: nowrap
+}.modal.modal - header.modal - header - title span {
+    display: inline - block;overflow: hidden
+}.modal.modal - header.modal - header - title i {
+    background - image: url(/wt/assets / img / common / icons.png);
+    vertical - align: middle;
+    margin - right: 5 px
+}.modal.modal - body {
+    font - size: 15 px;
+    font - family: 'microsoft yahei', arial;
+    line - height: 2e m;
+    padding: 10 px 20 px;
+    box - sizing: border - box;
+    overflow: auto;
+    max - height: 420 px;
+    background - color: #FFF
+}.modal.modal - footer {
+    background - color: #f3f8f9;
+    padding: 10 px
+}.modal.modal - footer.spinner {
+    display: inline - block;float: left;color: red;font - size: 1.2e m;word - spacing: .2e m
+}.modal.modal - footer.btn {
+    margin: 0 10 px 0 0;padding: 6 px 18 px
+}.modal.modal - footer.btn: last - child {
+    margin: 0
+}.modal.modal - footer i {
+    display: inline - block;height: 14 px;width: 14 px;background - image: url(/wt/assets / img / common / icons.png)
+}.modal.modal - footer i.btn - clear - icon {
+    background - position: -392 px - 41 px
+}.modal.modal - footer i.btn - ok - icon {
+    background - position: -322 px 2 px
+}.modal.modal - footer i.btn - next - icon {
+    background - position: -364 px 2 px
+}.modal.modal - footer i.btn - cancel - icon {
+    background - position: -322 px - 12 px
+}.modal.person - folder - selector {
+    min - width: 300 px;
+    width: 480 px
+}.modal.person - folder - selector.modal - body {
+    min - height: 250 px
+}.modal.login - box {
+    min - width: 100 px;
+    width: 450 px
+}.modal.login - box.modal - body {
+    min - height: 200 px;
+    padding: 20 px 0
+}.modal.login - box form {
+    text - align: center
+}.modal.login - box form.title {
+    font - size: 24 px;
+    color: #3b4551;height:36px;line-height:36px}.modal.login-box form .input-icon{position:absolute;left:115px;line-height:2.3em}.modal.login-box form input{padding-left:25px}.pagination{height:30px;margin:5px 0 5px 30%}.pagination ul{-webkit-box-shadow:none;-moz-box-shadow:none;box-shadow:none}.dept-selector .row-fluid.first{border-bottom:1px solid # ddd;
+    padding - bottom: 10 px
+}.dept - selector ul.search - list {
+    display: block;padding: 0
+}.dept - selector ul.search - list li {
+    height: 30 px;cursor: pointer;background - color: #FFF;border - bottom: 1 px solid# F2F5FA;line - height: 1.6e m;font - weight: 500;padding - left: 5 px
+}.dept - selector ul.search - list li.active {
+    background - color: #f4fbfe
+}.dept - user - selector.selected - list {
+    margin: 0
+}.dept - user - selector.selected - list.select - count {
+    border - bottom: 1 px solid# ddd;
+    padding: 9 px 0
+}.dept - user - selector.selected - list ul.select - users {
+    margin - top: 10 px
+}.dept - user - selector.selected - list ul.select - users > li {
+    line - height: 2e m
+}.dept - user - selector.selected - list ul.select - users > li: hover {
+    background - color: #229bea;color:# fff
+}.dept - user - selector.selected - list ul.select - users > li.remove - user {
+    cursor: pointer
+}.dept - user - selector.search - list.search - item {
+    margin - bottom: 5 px;
+    line - height: 1.8e m;
+    cursor: pointer
+}.dept - user - selector.search - list.search - item: hover {
+    background - color: #229bea;color:# fff
+}.dept - user - selector.search - list.search - item.user - item img {
+    width: 32 px;height: 32 px
+}.empty - tips {
+    text - align: center;
+    font - size: 17 px;
+    margin - top: 20 %
+}.empty - tips > span {
+    font - weight: 700;
+    color: #B0AFAF
+}.empty - tips.know - role {
+    display: none;margin - top: 20 px
+}.list - container ul.list - header {
+    background - color: #f5f5f5;
+    height: 30 px;
+    color: gray;
+    line - height: 1.1e m;
+    border: 1 px solid# ddd;
+    border - right: 0
+}.list - container ul.list - header > li {
+    text - align: center;
+    line - height: 2.5e m;
+    border - right: 1 px solid# ddd;
+    overflow: hidden;
+    text - overflow: ellipsis;
+    white - space: nowrap
+}.list - container.list - body {
+    overflow: auto;border - left: 1 px solid# ddd;border - right: 1 px solid# ddd;border - bottom: 1 px solid# ddd;padding - bottom: 5 px
+}.list - container.list - body ul.list - items {
+    text - align: center;
+    height: 40 px;
+    font - size: 14 px;
+    border - bottom: 1 px solid# ddd;
+    overflow: hidden
+}.list - container.list - body ul.list - items: hover {
+    cursor: pointer;background - color: #ebf2f5
+}.list - container.list - body ul.list - items > li {
+    vertical - align: middle;
+    line - height: 2.7e m
+}.list - container.list - body ul.list - items > li.main - cell {
+    text - align: left;
+    line - height: 1.8e m
+}.list - container.list - body ul.list - items > li.main - cell.two - rows - cell {
+    line - height: 1.4e m
+}.list - container.list - body ul.list - items > li.main - cell.img - cell {
+    line - height: 3e m
+}.list - container.list - body ul.list - items > li strong {
+    display: block;overflow: hidden;text - overflow: ellipsis;white - space: nowrap
+}.list - container.list - body ul.list - items > li em {
+    color: #a9a9a9;display: block;overflow: hidden;text - overflow: ellipsis;white - space: nowrap
+}.baidu - upload.upload - stat - info {
+    font - size: 15 px;
+    line - height: 2.8e m
+}.baidu - upload.upload - content {
+    border: 1 px solid# DDD;margin - top: 10 px;overflow: hidden
+}.baidu - upload.upload - content.upload - header {
+    border - bottom: 1 px solid# DDD;
+    padding - left: 10 px!important;
+    margin - bottom: 0
+}.baidu - upload.upload - content.upload - header > li {
+    border - right: 1 px solid# DDD;
+    font - size: 14 px;
+    color: #BCBCBC;
+    line - height: 2e m
+}.baidu - upload.upload - content.upload - header > li: last - child {
+    border: 0
+}.baidu - upload.upload - content.upload - items {
+    height: 220 px;overflow - x: hidden;overflow - y: auto
+}.baidu - upload.upload - content.upload - items.dnd - tip {
+    display: none
+}.baidu - upload.upload - content.upload - items.placeholder {
+    border: 3 px dashed# e6e6e6;text - align: center;background: url(/wt/assets / img / common / upload - placeholder.png) center 55 px no - repeat;color: #ccc;font - size: 16 px;position: relative
+}.baidu - upload.upload - content.upload - items.placeholder.dnd - tip {
+    display: block;margin - top: 130 px
+}.baidu - upload.upload - content.upload - items.placeholder - hover {
+    border - color: red
+}.baidu - upload.upload - content.upload - items.upload - item.progress {
+    height: 30 px;border - radius: 0;margin - bottom: 0
+}.baidu - upload.upload - content.upload - items.upload - item.upload - progress {
+    position: absolute; - moz - opacity: .4;opacity: .4;filter: alpha(opacity = 40);z - index: 1
+}.baidu - upload.upload - content.upload - items.upload - item.upload - item - body {
+    font - size: 14 px;
+    text - indent: 1e m
+}.baidu - upload.upload - content.upload - items.upload - item.upload - item - body > li {
+    line - height: 2e m
+}.baidu - upload.upload - content.upload - items.upload - item.upload - item - body > li.file - complete.label {
+    padding - right: 12 px
+}.baidu - upload.upload - content.upload - items.upload - item.upload - item - body > li.cs - rename - file {
+    font - size: 11 px;
+    padding: 0;
+    margin: 0
+}.set - permission.modal.modal - body {
+    padding: 0
+}.permission - selector {
+    color: gray
+}.permission - selector.shortcuts {
+    height: 425 px;border - right: 1 px solid# ddd
+}.permission - selector.shortcuts.permission - types {
+    border - bottom: 1 px solid# ddd
+}.permission - selector.shortcuts > ul > li {
+    font - size: 14 px;
+    height: 30 px;
+    line - height: 30 px;
+    cursor: pointer;
+    width: 130 px;
+    margin: 10 px 0;
+    z - index: 1;
+    position: relative
+}.permission - selector.shortcuts > ul > li > a {
+    display: inline - block;padding - left: 30 px;width: 92 px;color: gray
+}.permission - selector.shortcuts > ul > li.blue - right - arrow - 8 {
+    display: none
+}.permission - selector.shortcuts > ul > li.active > a {
+    background - color: #1493f4;color:# fff
+}.permission - selector.shortcuts > ul > li.active.blue - right - arrow - 8 {
+    vertical - align: middle;
+    display: inline - block
+}.permission - selector.permission - list.title - list {
+    border - bottom: 1 px solid# ddd
+}.permission - selector.permission - list.permission - checks > ul > li {
+    display: inline - block;font - size: 14 px;padding: 0 15 px 5 px 10 px
+}.permission - selector.permission - list.permission - intros.permission - item > li {
+    display: inline - block;vertical - align: middle;text - overflow: ellipsis;white - space: nowrap;overflow: hidden
+}.permission - selector.permission - list.permission - intros.permission - item.title {
+    width: 80 px;font - weight: 700;margin: 10 px 0 6 px 10 px
+}.modal.pdf - not - support.modal - body {
+    min - height: 300 px;
+    padding: 10 px 20 px;
+    font - size: 16 px
+}.modal.pdf - not - support.modal - body.browser - layout {
+    border: 1 px solid #787878;padding:0 20px;margin:10px 0}.modal.pdf-not-support .modal-body .browser-layout .setting-title{color:# 343434;font - size: 18 px;margin - top: 20 px;padding - left: 10 px
+}.modal.pdf - not - support.modal - body.browser - layout ul.info {
+    margin: 10 px 0 15 px;list - style - type: none;padding - left: 10 px
+}.modal.pdf - not - support.modal - body.browser - layout ul.info li {
+    display: inline - block;width: 49 % ;line - height: 40 px
+}.modal.pdf - not - support.modal - body.browser - layout ul.info li i {
+    margin - right: 10 px
+}.modal.pdf - not - support.modal - body.browser - layout ul.info li i[class ^= cs - icon - ] {
+    display: inline - block;background - image: url(/wt/assets / img / browser / browser - icons.png);vertical - align: middle
+}.modal.pdf - not - support.modal - body.browser - layout ul.info li > a {
+    color: #595959}.modal.pdf-not-support .modal-body .browser-layout ul.info tr td{padding-left:10px;vertical-align:middle;color:# 737373;font - size: 18 px
+}.modal.pdf - not - support.modal - body.browser - layout.cs - icon - 360 - setting, .modal.pdf - not - support.modal - body.browser - layout.cs - icon - ie - setting {
+    width: 195 px;height: 99 px
+}.modal.pdf - not - support.modal - body.browser - layout.cs - icon - 360 - setting {
+    background - position: 0 0
+}.modal.pdf - not - support.modal - body.browser - layout.cs - icon - ie - setting {
+    background - position: -197 px 0
+}.modal.pdf - not - support.modal - body.browser - layout.cs - icon - speed, .modal.pdf - not - support.modal - body.browser - layout.cs - icon - compatible {
+    width: 14 px;height: 14 px
+}.modal.pdf - not - support.modal - body.browser - layout.cs - icon - speed {
+    background - position: -136 px - 105 px
+}.modal.pdf - not - support.modal - body.browser - layout.cs - icon - compatible {
+    background - position: -162 px - 105 px
+}.modal.pdf - not - support.modal - body.browser - layout.cs - icon - chrome, .modal.pdf - not - support.modal - body.browser - layout.cs - icon - fireFox, .modal.pdf - not - support.modal - body.browser - layout.cs - icon - ie, .modal.pdf - not - support.modal - body.browser - layout.cs - icon - opera, .modal.pdf - not - support.modal - body.browser - layout.cs - icon - safari {
+    width: 25 px;height: 25 px
+}.modal.pdf - not - support.modal - body.browser - layout.cs - icon - chrome {
+    background - position: 0 - 100 px
+}.modal.pdf - not - support.modal - body.browser - layout.cs - icon - fireFox {
+    background - position: -25 px - 100 px
+}.modal.pdf - not - support.modal - body.browser - layout.cs - icon - ie {
+    background - position: -54 px - 100 px
+}.modal.pdf - not - support.modal - body.browser - layout.cs - icon - opera {
+    background - position: -103 px - 100 px
+}.modal.pdf - not - support.modal - body.browser - layout.cs - icon - safari {
+    background - position: -77 px - 100 px
+}.modal.pdf - not - support.modal - body.browser - layout.blue - ie {
+    color: #19b6fe}.modal.pdf-not-support .modal-body .browser-layout .green-360{color:# 53 c219
+}
